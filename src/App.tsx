@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline, Box } from '@mui/material';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import ExperienceSection from './components/ExperienceSection';
+import PDFDownloadButton from './components/PDFDownloadButton';
 import { personalInfo, experiences } from './data/resumeData';
 
 // Material-UI 테마 설정
@@ -77,6 +78,8 @@ const sections = [
 ];
 
 function App() {
+  const resumeRef = useRef<HTMLDivElement>(null);
+
   const handleSectionClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -87,7 +90,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ minHeight: '100vh' }}>
+      <Box ref={resumeRef} sx={{ minHeight: '100vh' }}>
+        <PDFDownloadButton targetRef={resumeRef} />
         <Header sections={sections} onSectionClick={handleSectionClick} />
         
         <Box id="home">
