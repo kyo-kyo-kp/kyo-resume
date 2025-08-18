@@ -12,6 +12,7 @@ import {
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { Experience } from '../types';
+import PDFDownloadButton from './PDFDownloadButton';
 
 interface ExperienceSectionProps {
   experiences: Experience[];
@@ -225,28 +226,31 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
               <Typography variant="body1" sx={{ mb: 3, opacity: 0.9 }}>
                 노션에 더 자세한 프로젝트와 경험을 정리해두었어요.
               </Typography>
-              <Box
-                component="a"
-                href="https://kyo-tigger.notion.site/kyo-s-resume-57834551f5ba4368b62f0b48304b10b8"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{
-                  display: 'inline-block',
-                  px: 4,
-                  py: 2,
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                  color: 'white',
-                  textDecoration: 'none',
-                  borderRadius: 2,
-                  fontWeight: 'bold',
-                  '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                    transform: 'translateY(-2px)',
-                    transition: 'all 0.3s ease'
-                  }
-                }}
-              >
-                포트폴리오 보기
+              <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
+                <Box
+                  component="a"
+                  href="https://kyo-tigger.notion.site/kyo-s-resume-57834551f5ba4368b62f0b48304b10b8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    display: 'inline-block',
+                    px: 4,
+                    py: 2,
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    color: 'white',
+                    textDecoration: 'none',
+                    borderRadius: 2,
+                    fontWeight: 'bold',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                      transform: 'translateY(-2px)',
+                      transition: 'all 0.3s ease'
+                    }
+                  }}
+                >
+                  포트폴리오 보기
+                </Box>
+                <PDFDownloadButton />
               </Box>
             </Paper>
           </motion.div>
