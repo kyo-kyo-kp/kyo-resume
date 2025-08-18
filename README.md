@@ -1,46 +1,167 @@
-# Getting Started with Create React App
+# Kyo's Resume SPA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React + TypeScript + Material UI로 구축된 개인 이력서 Single Page Application (SPA) 프로젝트입니다.
 
-## Available Scripts
+## 🚀 프로젝트 개요
 
-In the project directory, you can run:
+이 프로젝트는 개인 이력을 체계적으로 정리하고 시각적으로 표현하는 현대적인 웹 애플리케이션입니다. 반응형 디자인과 인터랙티브한 요소를 통해 사용자에게 최적화된 경험을 제공합니다.
 
-### `npm start`
+## 🛠️ 기술 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Frontend Framework**: React 18 + TypeScript
+- **UI Library**: Material-UI (MUI) v5
+- **Styling**: Emotion (MUI 기본 스타일링)
+- **Animation**: Framer Motion
+- **State Management**: React Hooks
+- **Build Tool**: Create React App
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 📦 설치 및 실행
 
-### `npm test`
+### 필수 요구사항
+- Node.js 16.0 이상
+- npm 또는 yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 설치
+```bash
+# 의존성 설치
+npm install
+```
 
-### `npm run build`
+### 개발 서버 실행
+```bash
+# 개발 서버 시작 (http://localhost:3000)
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 빌드
+```bash
+# 프로덕션 빌드
+npm run build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 테스트
+```bash
+# 테스트 실행
+npm test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📁 프로젝트 구조
 
-### `npm run eject`
+```
+src/
+├── components/          # 재사용 가능한 컴포넌트
+│   ├── Header.tsx      # 네비게이션 헤더
+│   ├── HeroSection.tsx # 메인 히어로 섹션
+│   └── AboutSection.tsx # About Me 섹션
+├── data/               # 데이터 파일
+│   └── resumeData.ts   # 이력서 데이터
+├── types/              # TypeScript 타입 정의
+│   └── index.ts        # 공통 타입 정의
+├── App.tsx             # 메인 App 컴포넌트
+└── index.tsx           # 앱 진입점
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🎨 주요 기능
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ✅ 구현 완료
+- **반응형 네비게이션**: 스크롤 시 투명도 변화, 모바일 햄버거 메뉴
+- **히어로 섹션**: 그라데이션 배경, 애니메이션 효과, 소셜 링크
+- **About Me 섹션**: 개인 정보, 관심사, 개발 철학
+- **Material-UI 테마**: 커스텀 색상 팔레트 및 타이포그래피
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 🚧 구현 예정
+- **Experience 섹션**: 경력 정보 타임라인
+- **Skills 섹션**: 기술 스택 시각화 (차트, 프로그레스 바)
+- **Projects 섹션**: 포트폴리오 갤러리
+- **Contact 섹션**: 연락처 폼 및 정보
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 🎯 주요 특징
 
-## Learn More
+### 디자인
+- **모던한 UI/UX**: Material Design 3 기반
+- **반응형 디자인**: 모든 디바이스 최적화
+- **애니메이션**: Framer Motion을 활용한 부드러운 전환 효과
+- **접근성**: WCAG 가이드라인 준수
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 기술적 특징
+- **TypeScript**: 타입 안정성 보장
+- **컴포넌트 기반**: 재사용 가능한 모듈화된 구조
+- **성능 최적화**: 코드 스플리팅 및 지연 로딩
+- **SEO 친화적**: 메타 태그 및 구조화된 데이터
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📊 데이터 구조
+
+프로젝트는 `src/data/resumeData.ts` 파일에서 중앙 집중식으로 데이터를 관리합니다:
+
+```typescript
+// 개인 정보
+export const personalInfo: PersonalInfo = {
+  name: "Kyo",
+  title: "Software Developer",
+  // ... 기타 정보
+};
+
+// 경력 정보
+export const experiences: Experience[] = [
+  // ... 경력 데이터
+];
+
+// 기술 스택
+export const skills: Skill[] = [
+  // ... 기술 데이터
+];
+```
+
+## 🚀 배포
+
+### Vercel 배포 (권장)
+```bash
+# Vercel CLI 설치
+npm i -g vercel
+
+# 배포
+vercel
+```
+
+### Netlify 배포
+```bash
+# 빌드 후 dist 폴더를 Netlify에 업로드
+npm run build
+```
+
+## 🔧 커스터마이징
+
+### 색상 테마 변경
+`src/App.tsx`의 `theme` 객체에서 색상을 수정할 수 있습니다:
+
+```typescript
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#667eea', // 메인 색상
+    },
+    // ... 기타 색상 설정
+  },
+});
+```
+
+### 데이터 수정
+`src/data/resumeData.ts` 파일에서 개인 정보, 경력, 프로젝트 등을 수정할 수 있습니다.
+
+## 📝 라이선스
+
+이 프로젝트는 MIT 라이선스 하에 배포됩니다.
+
+## 🤝 기여
+
+프로젝트 개선을 위한 기여를 환영합니다. Pull Request를 통해 기여해주세요.
+
+## 📞 연락처
+
+프로젝트에 대한 문의사항이 있으시면 이슈를 생성해주세요.
+
+---
+
+**개발자**: Kyo  
+**버전**: 1.0.0  
+**최종 업데이트**: 2024년 12월
