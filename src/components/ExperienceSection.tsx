@@ -13,6 +13,7 @@ import {
 import { motion } from 'framer-motion';
 import { Experience } from '../types';
 import PDFDownloadButton from './PDFDownloadButton';
+import { getEmploymentPeriodString } from '../utils/careerCalculator';
 
 interface ExperienceSectionProps {
   experiences: Experience[];
@@ -154,6 +155,26 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
                         <CalendarToday sx={{ mr: 1, color: 'text.secondary', fontSize: '1rem' }} />
                         <Typography variant="body2" color="text.secondary">
                           {experience.period}
+                          {experience.id === "1" && (
+                            <Typography component="span" sx={{ color: 'text.secondary', fontSize: '0.85em' }}>
+                              {' '}({getEmploymentPeriodString('2022-03-01')})
+                            </Typography>
+                          )}
+                          {experience.id === "2" && (
+                            <Typography component="span" sx={{ color: 'text.secondary', fontSize: '0.85em' }}>
+                              {' '}({getEmploymentPeriodString('2018-11-01', '2022-03-01')})
+                            </Typography>
+                          )}
+                          {experience.id === "3" && (
+                            <Typography component="span" sx={{ color: 'text.secondary', fontSize: '0.85em' }}>
+                              {' '}({getEmploymentPeriodString('2013-04-01', '2018-10-01')})
+                            </Typography>
+                          )}
+                          {experience.id === "4" && (
+                            <Typography component="span" sx={{ color: 'text.secondary', fontSize: '0.85em' }}>
+                              {' '}({getEmploymentPeriodString('2011-12-01', '2013-01-01')})
+                            </Typography>
+                          )}
                         </Typography>
                       </Box>
 

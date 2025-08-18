@@ -17,7 +17,8 @@ import {
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { PersonalInfo } from '../types';
-import { getCareerPeriodStringShort } from '../utils/careerCalculator';
+import { education } from '../data/resumeData';
+import { getCareerPeriodStringShort, getEmploymentPeriodString } from '../utils/careerCalculator';
 
 interface AboutSectionProps {
   personalInfo: PersonalInfo;
@@ -101,6 +102,8 @@ const AboutSection: React.FC<AboutSectionProps> = ({ personalInfo }) => {
             </Typography>
           </motion.div>
 
+
+
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
             {/* 왼쪽: 개인 정보 */}
             <Box sx={{ flex: { md: 1 } }}>
@@ -132,6 +135,11 @@ const AboutSection: React.FC<AboutSectionProps> = ({ personalInfo }) => {
                       </Typography>
                       <Typography variant="h6" color="primary">
                         {personalInfo.title}
+                        {education && education.length > 0 && (
+                          <Typography component="span" sx={{ color: 'text.secondary', fontWeight: 'normal', fontSize: '0.9em' }}>
+                            {' '}({education[0].school} · {education[0].field} · {education[0].degree})
+                          </Typography>
+                        )}
                       </Typography>
                     </Box>
                   </Box>
@@ -142,7 +150,10 @@ const AboutSection: React.FC<AboutSectionProps> = ({ personalInfo }) => {
                   
                   <Box sx={{ mb: 3 }}>
                     <Typography variant="body2" sx={{ mb: 1, fontWeight: 'bold' }}>
-                      🏢 카카오픽코마 (2022.03 - 현재)
+                      🏢 카카오픽코마
+                      <Typography component="span" sx={{ color: 'text.secondary', fontWeight: 'normal', fontSize: '0.8em' }}>
+                        {' '}({getEmploymentPeriodString('2022-03-01')})
+                      </Typography>
                     </Typography>
                     <Typography variant="body2" sx={{ mb: 1, color: 'text.secondary' }}>
                       • 개발4실 데이터 인텔리전스팀 (2024.07~): 데이터웨어하우스 설계 및 추천 시스템 구현
@@ -154,7 +165,10 @@ const AboutSection: React.FC<AboutSectionProps> = ({ personalInfo }) => {
                   
                   <Box sx={{ mb: 3 }}>
                     <Typography variant="body2" sx={{ mb: 1, fontWeight: 'bold' }}>
-                      🎮 넥슨코리아 (2018.11 - 2022.03)
+                      🎮 넥슨코리아
+                      <Typography component="span" sx={{ color: 'text.secondary', fontWeight: 'normal', fontSize: '0.8em' }}>
+                        {' '}({getEmploymentPeriodString('2018-11-01', '2022-03-01')})
+                      </Typography>
                     </Typography>
                     <Typography variant="body2" sx={{ mb: 1, color: 'text.secondary' }}>
                       • 인텔리전스랩스 라이브플랫폼실 (2021.10~): 넥슨플레이, 스푼플러스 앱 백엔드 운영
@@ -166,7 +180,10 @@ const AboutSection: React.FC<AboutSectionProps> = ({ personalInfo }) => {
                   
                   <Box sx={{ mb: 3 }}>
                     <Typography variant="body2" sx={{ mb: 1, fontWeight: 'bold' }}>
-                      🎁 케이티엠하우스 (2013.04 - 2018.10)
+                      🎁 케이티엠하우스
+                      <Typography component="span" sx={{ color: 'text.secondary', fontWeight: 'normal', fontSize: '0.8em' }}>
+                        {' '}({getEmploymentPeriodString('2013-04-01', '2018-10-01')})
+                      </Typography>
                     </Typography>
                     <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
                       기프티쇼 백엔드 시스템 운영, 쿠폰 발송 파이프라인, POS 연동 모듈 개발

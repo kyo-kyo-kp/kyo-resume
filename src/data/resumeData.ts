@@ -18,7 +18,7 @@ export const experiences: Experience[] = [
     position: "Sr.Pro / 엔지니어",
     period: "2022.03 - 현재",
     description: "글로벌 플랫폼 운영 및 개발을 담당했습니다. 프랑스 픽코마에서 정산, 개인화 추천, 데이터 ETL, KPI 고도화를 수행했으며, 현재는 일본 픽코마 데이터 인텔리전스팀에서 데이터웨어하우스 설계 및 추천 시스템을 구현하고 있습니다.",
-    technologies: ["Java", "Python", "AWS", "Redshift", "Athena", "DocumentDB", "Airflow"],
+    technologies: ["Kotlin", "Python", "AWS", "Redshift", "Athena", "DocumentDB", "Airflow"],
     achievements: [
       "데이터웨어하우스 설계 및 구현 (일본 픽코마, 2024.07~)",
       "작품별 함께 본 작품, 유사한 작품 추천 구현 및 데이터 툴 내 제공",
@@ -79,7 +79,7 @@ export const education: Education[] = [
     degree: "학사",
     field: "지식정보학부",
     period: "2004 - 2013",
-    description: "지식정보학부에서 정보 시스템과 데이터 관리에 대한 기초를 학습했습니다.",
+    description: "지식정보학부에서 도서관 정보 시스템과 데이터 관리에 대한 기초를 학습했습니다.",
     gpa: "N/A"
   }
 ];
