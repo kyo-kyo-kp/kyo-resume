@@ -82,6 +82,55 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* PDF 캡처 시 배경 및 장식 요소 제거/단순화 */
+.pdf-capture * {
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.pdf-capture .MuiAppBar-root,
+.pdf-capture header,
+.pdf-capture .MuiDrawer-root,
+.pdf-capture [data-pdf-button] {
+  display: none !important;
+}
+
+/* PDF 캡처 시 숨길 전용 블록 */
+.pdf-capture .pdf-hide-in-print {
+  display: none !important;
+}
+
+/* PDF 캡처 시 텍스트 가독성 보장: 흰 배경에서 흰 글씨 방지 */
+.pdf-capture,
+.pdf-capture * {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  text-shadow: none !important;
+}
+
+/* 메인 히어로(#home) 섹션 타이포 전용 보정 */
+.pdf-capture #home .MuiTypography-root,
+.pdf-capture #home p,
+.pdf-capture #home div,
+.pdf-capture #home span {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  background: transparent !important;
+}
+
+/* 그라데이션 배경 제거 및 텍스트 색상 강제 */
+.pdf-capture [style*="gradient"] {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.pdf-capture [style*="color: white"],
+.pdf-capture [style*="color: rgb(255, 255, 255)"],
+.pdf-capture [style*="color: rgba(255, 255, 255"] {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

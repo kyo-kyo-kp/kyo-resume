@@ -219,6 +219,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
                 textAlign: 'center',
                 color: 'white'
               }}
+              className="pdf-hide-in-print"
             >
               <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>
                 더 궁금한 점이 있으시다면?

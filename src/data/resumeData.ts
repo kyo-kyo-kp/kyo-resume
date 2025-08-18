@@ -58,17 +58,6 @@ export const experiences: Experience[] = [
   },
   {
     id: "4",
-    company: "인사이트랩",
-    position: "개발팀 / 사원",
-    period: "2013.01 - 2013.03",
-    description: "개발팀에서 사원으로 근무했습니다.",
-    technologies: ["Java", "JavaScript", "MySQL"],
-    achievements: [
-      "개발팀 업무 수행"
-    ]
-  },
-  {
-    id: "5",
     company: "아이엔소프트",
     position: "개발사업본부 / 사원",
     period: "2011.12 - 2013.01",
