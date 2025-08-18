@@ -156,10 +156,10 @@ const AboutSection: React.FC<AboutSectionProps> = ({ personalInfo }) => {
                       </Typography>
                     </Typography>
                     <Typography variant="body2" sx={{ mb: 1, color: 'text.secondary' }}>
-                      • 개발4실 데이터 인텔리전스팀 (2024.07~): 데이터웨어하우스 설계 및 추천 시스템 구현
+                      • 개발4실 데이터 인텔리전스팀 (2024.07~): 일본 데이터 엔지니어링 업무 수행, 작품별 추천 구현
                     </Typography>
                     <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
-                      • 글로벌개발본부 플랫폼개발팀 (2022.03~2024.06): 프랑스 픽코마 정산, 추천, ETL, KPI 고도화
+                      • 글로벌개발본부 플랫폼개발팀 (2022.03~2024.06): 프랑스 픽코마 정산, 개인화 추천, ETL, KPI 고도화
                     </Typography>
                   </Box>
                   
