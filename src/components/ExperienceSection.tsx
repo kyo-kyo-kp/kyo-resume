@@ -73,16 +73,15 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
           </motion.div>
 
           <Box sx={{ position: 'relative' }}>
-            {/* 타임라인 중앙선 */}
+            {/* 타임라인 왼쪽선 */}
             <Box
               sx={{
                 position: 'absolute',
-                left: { xs: 20, md: '50%' },
+                left: 20,
                 top: 0,
                 bottom: 0,
                 width: 2,
                 backgroundColor: 'primary.main',
-                transform: { md: 'translateX(-50%)' },
                 zIndex: 1
               }}
             />
@@ -94,8 +93,8 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
                   position: 'relative',
                   mb: 4,
                   display: 'flex',
-                  flexDirection: { xs: 'column', md: index % 2 === 0 ? 'row' : 'row-reverse' },
-                  alignItems: { md: 'center' }
+                  flexDirection: 'row',
+                  alignItems: 'flex-start'
                 }}
               >
                 <motion.div
@@ -106,14 +105,13 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
                   <Box
                     sx={{
                       position: 'absolute',
-                      left: { xs: 16, md: '50%' },
-                      top: { xs: 20, md: '50%' },
+                      left: 16,
+                      top: 20,
                       width: 12,
                       height: 12,
                       borderRadius: '50%',
                       backgroundColor: 'primary.main',
                       border: '3px solid white',
-                      transform: { md: 'translate(-50%, -50%)' },
                       zIndex: 2,
                       boxShadow: 2
                     }}
@@ -122,10 +120,9 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
                   {/* 경력 카드 */}
                   <Box
                     sx={{
-                      flex: { md: 1 },
-                      ml: { xs: 4, md: index % 2 === 0 ? 0 : 4 },
-                      mr: { xs: 0, md: index % 2 === 0 ? 4 : 0 },
-                      mt: { xs: 0, md: 0 }
+                      flex: 1,
+                      ml: 4,
+                      mt: 0
                     }}
                   >
                     <Paper
