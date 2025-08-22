@@ -4,22 +4,36 @@ import {
   Typography,
   Avatar,
   Container,
-  Paper
+  Paper,
+  IconButton
 } from '@mui/material';
 import {
   Email,
   Phone,
-  LocationOn
+  LocationOn,
+  Palette
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { PersonalInfo } from '../types';
 import { getCareerPeriodString } from '../utils/careerCalculator';
+import { getSessionColor, changeColor } from '../utils/colorPalette';
 
 interface HeroSectionProps {
   personalInfo: PersonalInfo;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ personalInfo }) => {
+  // 세션에서 선택된 컬러 가져오기
+  const [selectedColor, setSelectedColor] = React.useState(getSessionColor());
+  
+  // 컬러 변경 함수
+  const handleColorChange = () => {
+    const newColor = changeColor();
+    setSelectedColor(newColor);
+    // 페이지 새로고침으로 테마 전체 업데이트
+    window.location.reload();
+  };
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,7 +58,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ personalInfo }) => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: selectedColor.gradient,
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
@@ -181,7 +195,34 @@ const HeroSection: React.FC<HeroSectionProps> = ({ personalInfo }) => {
             </Box>
 
             {/* 오른쪽 프로필 카드 */}
-            <Box sx={{ flex: { md: 5 } }}>
+            <Box sx={{ flex: { md: 5 }, position: 'relative' }}>
+              {/* 컬러 변경 버튼 */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 1, type: "spring", stiffness: 200 }}
+              >
+                <IconButton
+                  onClick={handleColorChange}
+                  sx={{
+                    position: 'absolute',
+                    top: -20,
+                    right: 20,
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(10px)',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 1)',
+                      transform: 'scale(1.1)',
+                    },
+                    transition: 'all 0.3s ease',
+                    zIndex: 10
+                  }}
+                >
+                  <Palette sx={{ color: selectedColor.primary }} />
+                </IconButton>
+              </motion.div>
+              
               <motion.div variants={itemVariants}>
                 <Paper
                   elevation={8}
@@ -221,7 +262,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ personalInfo }) => {
                       mb: 3, 
                       color: 'white',
                       fontWeight: 'bold',
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      background: selectedColor.gradient,
                       px: 2,
                       py: 0.5,
                       borderRadius: 1,
