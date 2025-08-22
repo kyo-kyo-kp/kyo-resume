@@ -14,12 +14,15 @@ import { motion } from 'framer-motion';
 import { Experience } from '../types';
 import PDFDownloadButton from './PDFDownloadButton';
 import { getEmploymentPeriodString } from '../utils/careerCalculator';
+import { getSessionColor } from '../utils/colorPalette';
 
 interface ExperienceSectionProps {
   experiences: Experience[];
 }
 
 const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) => {
+  // 세션에서 선택된 컬러 가져오기
+  const selectedColor = getSessionColor();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -236,7 +239,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) =>
                 p: 4,
                 mt: 6,
                 borderRadius: 3,
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: selectedColor.gradient,
                 textAlign: 'center',
                 color: 'white'
               }}
