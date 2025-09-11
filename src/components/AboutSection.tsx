@@ -61,6 +61,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ personalInfo }) => {
     '팀 협력과 소통'
   ];
 
+
   return (
     <Box
       id="about"

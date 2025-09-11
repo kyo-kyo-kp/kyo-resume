@@ -5,6 +5,7 @@ import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import ExperienceSection from './components/ExperienceSection';
+import LocationTest from './components/LocationTest';
 import { personalInfo, experiences } from './data/resumeData';
 import { getSessionColor } from './utils/colorPalette';
 
@@ -13,6 +14,7 @@ const sections = [
   { id: 'home', title: 'Home' },
   { id: 'about', title: 'About' },
   { id: 'experience', title: 'Experience' },
+  // { id: 'location-test', title: 'Location Test' }, // 테스트용 - 필요시 주석 해제
 ];
 
 function App() {
@@ -101,6 +103,12 @@ function App() {
         <AboutSection personalInfo={personalInfo} />
         
         <ExperienceSection experiences={experiences} />
+        
+        {/* 테스트용 컴포넌트 - 필요시 주석 해제
+        <Box id="location-test" sx={{ py: 4 }}>
+          <LocationTest />
+        </Box>
+        */}
       </Box>
     </ThemeProvider>
   );

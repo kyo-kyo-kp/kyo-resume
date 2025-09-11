@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -17,6 +17,11 @@ import { motion } from 'framer-motion';
 import { PersonalInfo } from '../types';
 import { getCareerPeriodString } from '../utils/careerCalculator';
 import { getSessionColor, changeColor } from '../utils/colorPalette';
+import { locationService } from '../services/LocationService';
+import { weatherService } from '../services/WeatherService';
+import { llmService } from '../services/LLMService';
+import { LocationInfo, WeatherInfo, GreetingInfo } from '../types/weatherGreeting';
+import SpeechBubble from './SpeechBubble';
 
 interface HeroSectionProps {
   personalInfo: PersonalInfo;
@@ -26,13 +31,91 @@ const HeroSection: React.FC<HeroSectionProps> = ({ personalInfo }) => {
   // 세션에서 선택된 컬러 가져오기
   const [selectedColor, setSelectedColor] = React.useState(getSessionColor());
   
+  // WeatherGreeting 상태
+  const [locationInfo, setLocationInfo] = useState<LocationInfo | null>(null);
+  const [weatherInfo, setWeatherInfo] = useState<WeatherInfo | null>(null);
+  const [greetingInfo, setGreetingInfo] = useState<GreetingInfo | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  
   // 컬러 변경 함수
   const handleColorChange = () => {
     const newColor = changeColor();
     setSelectedColor(newColor);
-    // 페이지 새로고침으로 테마 전체 업데이트
-    window.location.reload();
+    // 말풍선 색상도 함께 업데이트하기 위해 인사말 재생성
+    if (locationInfo && weatherInfo) {
+      handleRefreshGreeting();
+    }
+    // 실시간 색상 변경을 위해 페이지 새로고침 제거
+    // window.location.reload();
   };
+
+  // WeatherGreeting 로드 함수
+  const loadWeatherGreeting = async () => {
+    setIsLoading(true);
+    
+    try {
+      // 1. 지역 정보 조회
+      const locationResult = await locationService.getLocationInfo();
+      if (locationResult.success && locationResult.data) {
+        setLocationInfo(locationResult.data);
+        
+        // 2. 날씨 정보 조회
+        const weatherResult = await weatherService.getWeatherInfo(locationResult.data);
+        if (weatherResult.success && weatherResult.data) {
+          setWeatherInfo(weatherResult.data);
+          
+          // 3. 인사말 생성
+          const greetingResult = await llmService.generateGreeting(locationResult.data, weatherResult.data);
+          if (greetingResult.success && greetingResult.data) {
+            setGreetingInfo(greetingResult.data);
+          }
+        } else {
+          // 날씨 정보 실패 시 기본 날씨로 인사말 생성
+          const defaultWeather: WeatherInfo = {
+            temperature: 20,
+            condition: '맑음',
+            description: '기본 날씨 정보',
+            humidity: 50,
+            windSpeed: 2
+          };
+          setWeatherInfo(defaultWeather);
+          
+          const greetingResult = await llmService.generateGreeting(locationResult.data, defaultWeather);
+          if (greetingResult.success && greetingResult.data) {
+            setGreetingInfo(greetingResult.data);
+          }
+        }
+      }
+    } catch (error) {
+      console.error('WeatherGreeting 로드 실패:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // 인사말 새로고침 함수
+  const handleRefreshGreeting = async () => {
+    if (locationInfo && weatherInfo) {
+      const greetingResult = await llmService.generateGreeting(locationInfo, weatherInfo);
+      if (greetingResult.success && greetingResult.data) {
+        setGreetingInfo(greetingResult.data);
+      }
+    }
+  };
+
+  // 캐시 삭제 함수
+  const handleClearCache = () => {
+    if (locationInfo && weatherInfo) {
+      llmService.clearCache(locationInfo, weatherInfo);
+      // 캐시 삭제 후 새로운 인사말 생성
+      handleRefreshGreeting();
+    }
+  };
+
+  // 컴포넌트 마운트 시 WeatherGreeting 로드
+  useEffect(() => {
+    loadWeatherGreeting();
+  }, []);
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -53,6 +136,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ personalInfo }) => {
       transition: { duration: 0.6 }
     }
   };
+
 
   return (
     <Box
@@ -231,22 +315,40 @@ const HeroSection: React.FC<HeroSectionProps> = ({ personalInfo }) => {
                     backgroundColor: 'rgba(255, 255, 255, 0.95)',
                     backdropFilter: 'blur(10px)',
                     borderRadius: 3,
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    position: 'relative',
+                    overflow: 'visible'
                   }}
                 >
-                  <Avatar
-                    src="/kyo-profile.png"
-                    sx={{
-                      width: 120,
-                      height: 120,
-                      mx: 'auto',
-                      mb: 3,
-                      fontSize: '3rem',
-                      backgroundColor: 'primary.main'
-                    }}
-                  >
-                    {personalInfo.name.charAt(0)}
-                  </Avatar>
+                  <Box sx={{ position: 'relative', display: 'inline-block' }}>
+                    <Avatar
+                      src="/kyo-profile.png"
+                      sx={{
+                        width: 120,
+                        height: 120,
+                        mx: 'auto',
+                        mb: 3,
+                        fontSize: '3rem',
+                        backgroundColor: 'primary.main'
+                      }}
+                    >
+                      {personalInfo.name.charAt(0)}
+                    </Avatar>
+                  </Box>
+                  
+                  {/* 말풍선 - 프로필 카드 위쪽에 위치 */}
+                  {greetingInfo && (
+                    <SpeechBubble
+                      key={`speech-bubble-${selectedColor.name}`}
+                      greetingInfo={greetingInfo}
+                      onRefresh={handleRefreshGreeting}
+                      onClearCache={handleClearCache}
+                      position="top-right"
+                      size="small"
+                      showControls={true}
+                      currentColor={selectedColor}
+                    />
+                  )}
 
                   <Typography variant="h5" sx={{ mb: 1, fontWeight: 'bold' }}>
                     {personalInfo.name}
