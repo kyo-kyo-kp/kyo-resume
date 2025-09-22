@@ -68,8 +68,12 @@ src/
 - **히어로 섹션**: 그라데이션 배경, 애니메이션 효과, 소셜 링크
 - **About Me 섹션**: 개인 정보, 관심사, 개발 철학
 - **Material-UI 테마**: 커스텀 색상 팔레트 및 타이포그래피
+- **IP 기반 지역 유추**: 사용자 위치 자동 감지 및 캐싱
+- **날씨 정보 연동**: OpenWeatherMap API를 활용한 실시간 날씨 정보
 
 ### 🚧 구현 예정
+- **LLM 기반 인사말**: OpenAI/Gemini API를 활용한 개인화된 인사말 생성
+- **말풍선 UI**: 프로필 사진 위에 표시되는 인터랙티브한 말풍선
 - **Experience 섹션**: 경력 정보 타임라인
 - **Skills 섹션**: 기술 스택 시각화 (차트, 프로그레스 바)
 - **Projects 섹션**: 포트폴리오 갤러리
@@ -147,6 +151,35 @@ const theme = createTheme({
 
 ### 데이터 수정
 `src/data/resumeData.ts` 파일에서 개인 정보, 경력, 프로젝트 등을 수정할 수 있습니다.
+
+## 🌤️ 날씨 인사말 기능 설정
+
+### API 키 설정
+프로젝트 루트에 `.env` 파일을 생성하고 다음 환경변수를 설정하세요:
+
+```bash
+# OpenWeatherMap API 키 (날씨 정보용)
+# https://openweathermap.org/api 에서 무료 계정 생성 후 API 키 발급
+REACT_APP_OPENWEATHER_API_KEY=your_openweather_api_key_here
+
+# OpenAI API 키 (LLM 인사말 생성용)
+# https://platform.openai.com/api-keys 에서 API 키 발급
+REACT_APP_OPENAI_API_KEY=your_openai_api_key_here
+
+# Google Gemini API 키 (OpenAI 대신 사용할 경우)
+# https://makersuite.google.com/app/apikey 에서 API 키 발급
+REACT_APP_GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+### API 서비스별 특징
+- **OpenWeatherMap**: 무료 tier 1,000 calls/day
+- **OpenAI GPT**: 사용량 기반 과금 (월 $5-20 예상)
+- **Google Gemini**: 무료 tier 제공
+
+### 캐싱 정책
+- **지역 정보**: 24시간 캐시 (IP는 자주 변경되지 않음)
+- **날씨 정보**: 1시간 캐시 (날씨는 자주 변함)
+- **LLM 응답**: 6시간 캐시 (같은 조건에서 재사용)
 
 ## 📝 라이선스
 

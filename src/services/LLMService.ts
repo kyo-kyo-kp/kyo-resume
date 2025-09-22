@@ -118,17 +118,18 @@ class LLMService {
    * OpenAI GPT API를 사용하여 인사말을 생성합니다.
    */
   private async generateWithOpenAI(location: LocationInfo, weather: WeatherInfo): Promise<string> {
-    const prompt = `당신은 친근한 개발자 김규호입니다. 
+    const prompt = `당신은 유머러스한 개발자 김규호입니다. 
 현재 날씨는 ${weather.condition}, 온도는 ${weather.temperature}도입니다.
-이 정보를 바탕으로 개발자 포트폴리오 방문자에게 친근하고 개성있는 인사말을 작성해주세요.
+이 정보를 바탕으로 포트폴리오 방문자에게 재밌고 개성있는 인사말을 작성해주세요.
 
 요구사항:
 - 50자 이내로 간결하게
-- 개발자다운 유머나 기술적 언급 포함
-- 날씨 특성을 반영
-- 친근하면서도 전문적인 톤
+- 개발자다운 유머나 일상 개그 포함
+- 날씨를 재밌게 활용
+- 친근하고 자연스러운 톤
 - 한국어로 작성
-- 도시명은 언급하지 마세요`;
+- 도시명은 언급하지 마세요
+- 진부하지 않고 창의적으로`;
 
     const response = await fetch(this.OPENAI_API_URL, {
       method: 'POST',
@@ -165,17 +166,18 @@ class LLMService {
    * Google Gemini API를 사용하여 인사말을 생성합니다.
    */
   private async generateWithGemini(location: LocationInfo, weather: WeatherInfo): Promise<string> {
-    const prompt = `당신은 친근한 개발자 김규호입니다. 
+    const prompt = `당신은 유머러스한 개발자 김규호입니다. 
 현재 날씨는 ${weather.condition}, 온도는 ${weather.temperature}도입니다.
-이 정보를 바탕으로 개발자 포트폴리오 방문자에게 친근하고 개성있는 인사말을 작성해주세요.
+이 정보를 바탕으로 포트폴리오 방문자에게 재밌고 개성있는 인사말을 작성해주세요.
 
 요구사항:
 - 50자 이내로 간결하게
-- 개발자다운 유머나 기술적 언급 포함
-- 날씨 특성을 반영
-- 친근하면서도 전문적인 톤
+- 개발자다운 유머나 일상 개그 포함
+- 날씨를 재밌게 활용
+- 친근하고 자연스러운 톤
 - 한국어로 작성
-- 도시명은 언급하지 마세요`;
+- 도시명은 언급하지 마세요
+- 진부하지 않고 창의적으로`;
 
     const response = await fetch(`${this.GEMINI_API_URL}?key=${this.GEMINI_API_KEY}`, {
       method: 'POST',
@@ -227,14 +229,16 @@ class LLMService {
    */
   private generateDefaultGreeting(location: LocationInfo, weather: WeatherInfo): string {
     const greetings = [
-      `안녕하세요! 포트폴리오에 오신 걸 환영합니다! 🌟`,
-      `${weather.condition} 날씨에 안녕하세요! 👋`,
-      `${weather.temperature}도 완벽한 날씨네요! 반갑습니다! 😊`,
-      `${weather.condition} 날씨가 좋네요! 안녕하세요! ☀️`,
-      `${weather.temperature}도 ${weather.condition}인 좋은 날에 만나서 반가워요! 🚀`,
-      `개발자 김규호입니다! 반갑습니다! 💻`,
-      `포트폴리오를 둘러보시는군요! 안녕하세요! 👨‍💻`,
-      `좋은 하루 되세요! 개발 이야기 나눠요! 🌈`
+      `${weather.temperature}도면 CPU도 땀 흘릴 날씨네요! 🔥💻`,
+      `버그 잡으러 오셨나요? 저도 매일 잡고 있어요! 🐛🔍`,
+      `${weather.condition} 날씨에 코딩하기 딱 좋네요! ☀️`,
+      `커밋 메시지 뭐로 할지 고민 중이에요... 🤔📝`,
+      `포트폴리오 리뷰 감사합니다! 코드 리뷰도 해주세요! 👀✨`,
+      `${weather.temperature}도에서도 열심히 개발 중! 🚀`,
+      `배포 전에 테스트는 했죠? (저도 매번 깜빡해요) 🧪`,
+      `${weather.condition} 날씨에 코딩하기 좋다고 해요! ☀️💻`,
+      `오늘도 코드와 씨름하는 하루! 반갑습니다! 👨‍💻`,
+      `날씨 좋은데 집에서 코딩하고 있네요... 😅`
     ];
 
     // 위치와 날씨를 기반으로 인사말 선택
