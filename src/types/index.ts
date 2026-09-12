@@ -3,7 +3,7 @@ export interface PersonalInfo {
   name: string;
   title: string;
   email: string;
-  phone: string;
+  phone?: string;
   location: string;
   summary: string;
   avatar?: string;
@@ -18,6 +18,8 @@ export interface Experience {
   description: string;
   technologies: string[];
   achievements?: string[];
+  /** Journey 3막 매핑. 없으면 회사명으로 매핑한다. */
+  chapter?: 'backend' | 'platform' | 'data';
 }
 
 // 학력 정보 타입

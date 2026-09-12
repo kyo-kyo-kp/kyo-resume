@@ -5,26 +5,42 @@ export const personalInfo: PersonalInfo = {
   name: "김규호",
   title: "Engineer",
   email: "rlarbghrbgh@gmail.com",
-  phone: "+82-10-3336-4883",
   location: "Seoul, South Korea",
   summary: "안녕하세요👋 개발을 즐기고자 하는 김규호입니다.\n\n현재에 안주하는 것보다 안정된 상황에서도 불합리한 요소를 찾아 해결하고, 일과 삶에서 '선순환'을 만들어 낼 줄 아는 사람이 되고자 합니다.\n\n개발자 중심이 아닌, 사용자 중심에서 편리한 서비스를 구축하는 개발자가 되고자 합니다."
 };
 
-// 경력 정보 (2025년부터 2011년까지 연혁)
+// 경력 정보 (최근 → 과거). chapter 로 Journey 3막에 매핑
 export const experiences: Experience[] = [
   {
-    id: "1",
+    id: "1a",
     company: "카카오픽코마",
-    position: "Sr.Pro / 엔지니어",
-    period: "2022.03 - 현재",
-    description: "글로벌 플랫폼 운영 및 개발을 담당했습니다. 프랑스 픽코마에서 정산, 개인화 추천, 데이터 ETL, KPI 고도화를 수행했으며, 현재는 일본 픽코마 데이터 인텔리전스팀에서 데이터 엔지니어링 업무를 수행하고 있습니다.",
-    technologies: ["Kotlin", "Python", "AWS", "Redshift", "Athena", "DocumentDB", "Airflow"],
+    position: "데이터인텔리전스팀 팀장 (2026.01~) · Sr.Pro 엔지니어",
+    period: "2024.07 - 현재",
+    description: "일본 픽코마의 데이터 파이프라인과 사내 시각화 플랫폼을 설계·운영합니다. 열람·매출 데이터의 수집(배치·실시간)부터 가공, API, 시각화, 안정 운영까지 담당하며, 2025년 10월부터 실질적으로 팀을 리딩하고 2026년 1월 팀장이 됐습니다.",
+    technologies: ["Kotlin", "Python", "SQL", "AWS", "Redshift", "Athena", "Airflow", "BigQuery", "PostgreSQL", "React"],
     achievements: [
-      "데이터 파이프라인 설계/구축 및 운영 (일본 픽코마, 2024.07~)",
-      "작품별 함께 본 작품, 유사한 작품 추천 구현 및 데이터 툴 내 제공 (일본 픽코마, 2025.03~)",
-      "글로벌 플랫폼 운영 및 개발 (프랑스 픽코마, 2022.03~2024.06)",
-      "정산, 개인화 추천, 데이터 ETL, KPI 등 고도화 및 도입 수행"
-    ]
+      "데이터 파이프라인 설계·구축·운영과 l1~l4 레이어 표준, 일일 품질 검증 DAG (2024.07~)",
+      "함께 본 작품·유사 작품 추천을 데이터 툴 안에서 제공 (2025.03~)",
+      "RFM 기반 사용자 세그먼트를 재사용 가능한 기능으로 제품화 (2025 하반기)",
+      "사내 시각화 플랫폼을 의사결정 플랫폼으로 재정의, Redshift Serverless 도입과 운영 안정화 (2026 상반기)",
+      "지식 그래프 기반 DW 데이터 맵 구축 (2026)",
+      "채용(JD·면접 설계), 온보딩 문서, 주간·월간·스프린트 운영 체계 정비"
+    ],
+    chapter: "data"
+  },
+  {
+    id: "1b",
+    company: "카카오픽코마",
+    position: "플랫폼 엔지니어 (프랑스 픽코마)",
+    period: "2022.03 - 2024.06",
+    description: "프랑스 픽코마의 글로벌 플랫폼 운영과 개발을 담당했습니다. 정산, 개인화 추천, 데이터 ETL, KPI 고도화를 수행하며 웹툰 비즈니스의 데이터 흐름을 익혔습니다.",
+    technologies: ["Kotlin", "Java", "Python", "AWS", "AWS Personalize", "DocumentDB"],
+    achievements: [
+      "정산 시스템 고도화 및 운영",
+      "AWS Personalize 기반 개인화 추천 도입",
+      "데이터 ETL 파이프라인과 KPI 지표 고도화"
+    ],
+    chapter: "platform"
   },
   {
     id: "2",
