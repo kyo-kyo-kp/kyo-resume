@@ -26,7 +26,27 @@ const CaseCard: React.FC<{ item: Case }> = ({ item }) => {
           {item.change}
         </Labeled>
       </Stack>
-      <Box sx={{ mt: 3 }}>
+      {(item.myPart || item.teamPart) && (
+        <Box sx={{ mt: 2.5, pt: 2, borderTop: 1, borderColor: 'divider', display: 'grid', gap: 0.75 }}>
+          {item.myPart && (
+            <Typography variant="body2">
+              <Box component="span" sx={{ color: 'primary.main', fontWeight: 700, mr: 1 }}>
+                {s.stories.myPart}
+              </Box>
+              {item.myPart}
+            </Typography>
+          )}
+          {item.teamPart && (
+            <Typography variant="body2" color="text.secondary">
+              <Box component="span" sx={{ fontWeight: 700, mr: 1 }}>
+                {s.stories.teamPart}
+              </Box>
+              {item.teamPart}
+            </Typography>
+          )}
+        </Box>
+      )}
+      <Box sx={{ mt: 2.5 }}>
         {item.stack.length > 0 && <TagList items={item.stack} />}
         <Typography variant="caption" color="text.secondary" component="div" sx={{ mt: 1.5 }}>
           {item.period}

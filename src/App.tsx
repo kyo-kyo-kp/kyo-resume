@@ -23,13 +23,13 @@ const App: React.FC = () => (
         <Header />
         <Box component="main">
           <Hero />
+          <Journey />
           <Platform />
           <Stories />
-          <HowIWork />
           <AiWorkflow />
-          <Journey />
-          <StackSection />
+          <HowIWork />
           <Leadership />
+          <StackSection />
           <Contact />
         </Box>
         <Footer />

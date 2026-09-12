@@ -32,7 +32,7 @@ export const chapters: Chapter[] = [
     summary:
       'Data pipelines and the internal visualization platform for Piccoma Japan, plus segmentation, recommendations, and AI analysis. Led the team in practice from October 2025 and became Data Intelligence team lead in January 2026.',
     lesson:
-      'A data team is done not when the screen ships but when practitioners use it repeatedly. And a team lead\'s job is not to code more but to set scope and priorities so each member finds their role and can work steadily.',
+      'A data team is done not when the screen ships but when practitioners use it repeatedly. After becoming lead I kept implementing pipelines and APIs myself, while also taking on the work of setting scope and priorities so each member finds their role and can work steadily.',
     roles: ['Data engineer', 'Data Intelligence team lead'],
     companies: ['카카오픽코마'],
     companyLabels: ['Kakao Piccoma']

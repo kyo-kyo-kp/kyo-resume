@@ -2,9 +2,13 @@ import { AiWorkflow } from '../../types/content';
 
 /** English mirror of ko/aiWorkflow.ts. At least one honest limitation is required. */
 export const aiWorkflow: AiWorkflow = {
-  headline: 'Design with AI. Decide what to protect myself.',
+  headline: 'From screens that show metrics to reports that read the context',
+  changed:
+    'AI analysis reports that read each title and publisher against company KPIs are served through the AI Insights menu of the internal visualization platform. The business unit, overseas and domestic content, IP strategy, and platform planning organizations responded, and a business-unit practitioner asked for access to use them in operations. Four questions decision makers ask repeatedly were defined as analysis topics and validated; moving them into operational features such as alerts, guards, and badges is under discussion.',
+  how:
+    'The core is not the model but context and harness. Data is contextualized through the data map (metric definitions, lineage, interpretation rules), and a harness lets AI read data and write reports only within that context. The design was done in conversation with AI; what to protect was decided by me.',
   summary:
-    'The data map was designed in conversation with AI. But the guardrails were my call: inferences are labeled as estimates, example values are synthetic rather than real, and people appear only at department level. AI raised the speed of design; what to protect was decided by me.',
+    'Inferences are labeled as estimates, example values are synthetic rather than real, and people appear only at department level. Agents never touch the warehouse directly. AI raised the speed of design; what to protect was decided by me.',
   guardrails: [
     {
       title: 'Inferences are labeled as estimates',
@@ -29,7 +33,8 @@ export const aiWorkflow: AiWorkflow = {
   ],
   limitations: [
     'AI analysis reports held up as far as "serve the metric → assist the interpretation", but they are not at the stage of replacing judgment. Whether to adopt them was left as a decision on the PoC results.',
-    'Without separating inference from vetting, the catalog itself becomes a new source of misunderstanding. That is why the "estimate" label is enforced.'
+    'Without separating inference from vetting, the catalog itself becomes a new source of misunderstanding. That is why the "estimate" label is enforced.',
+    'The more plausible a report looks, the greater the risk it is quoted without verification. So moving anything into operations always goes through the consuming teams.'
     // TODO(kyo): one concrete wrong answer or failure produced by AI (this will be the most trusted line in the section)
   ],
   diagram: `flowchart LR

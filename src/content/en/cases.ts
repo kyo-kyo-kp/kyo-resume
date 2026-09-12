@@ -1,6 +1,6 @@
 import { Case } from '../../types/content';
 
-/** English mirror of ko/cases.ts. "Seven stories on one platform." No numbers in titles. */
+/** English mirror of ko/cases.ts. "Nine stories that start with a problem" (A-G data platform, H-I backend). No numbers in titles. myPart/teamPart are drafts where marked TODO. */
 export const cases: Case[] = [
   {
     id: 'A',
@@ -15,7 +15,10 @@ export const cases: Case[] = [
     stack: ['Redshift', 'Athena', 'Airflow', 'Kotlin', 'React'],
     evidence: 'Spread across several divisions (H2 2025)',
     period: '2025.07 – 2025.12',
-    chapter: 'data'
+    chapter: 'data',
+    myPart: 'Designed the RFM data models (l2/l4), implemented the async query flow, built the screen PoC',
+    // TODO(kyo): confirm the team's part
+    teamPart: 'Production UI and rollout with the team'
   },
   {
     id: 'B',
@@ -30,7 +33,10 @@ export const cases: Case[] = [
     stack: ['Architecture renewal', 'Permissions & caching', 'ETag'],
     evidence: 'Active users up two to three times (H1 2026)',
     period: '2026.01 – 2026.06',
-    chapter: 'data'
+    chapter: 'data',
+    myPart: 'Redefined the platform, ran the interviews, implemented API hardening (permissions, caching, ETag)',
+    // TODO(kyo): confirm the split
+    teamPart: 'Screen rearrangement and new menus split with the team'
   },
   {
     id: 'C',
@@ -45,23 +51,27 @@ export const cases: Case[] = [
     stack: ['Python', 'Airflow', 'Redshift Serverless', 'Athena', 'PostgreSQL migration'],
     evidence: 'Run on written rules and a shared package',
     period: '2024.07 – present',
-    chapter: 'data'
+    chapter: 'data',
+    myPart: 'Wrote the DAG rules and the shared package, the daily quality DAGs',
+    teamPart: 'Migrating and writing individual DAGs was the whole team'
   },
   {
     id: 'D',
-    competency: 'AI workflow adoption · guardrails included',
-    title: 'Bringing agents into data work safely',
+    competency: 'What AI changed · analysis reports as a decision tool',
+    title: 'AI analysis reports became a decision tool for practitioners',
     problem:
-      'AI tools speed things up, but they bring the risk of unbounded queries against the production warehouse and plausible wrong answers ending up in reports.',
+      'The metrics were on screen, but interpretation was left to people. Reading one title or one publisher against company KPIs had to pass through an analyst every time.',
     approach:
-      'A PoC of AI analysis reports on titles and publishers tested how far "serve the metric → assist the interpretation" holds. To keep agents off the warehouse directly, a query and schema wrapper enforcing read-only access, mandatory partition filters, and local aggregation sits in the workflow. The team operates within the company\'s AI agent security policy.',
-    // TODO(kyo): confirm who designed the wrapper (self/team) and how widely it is deployed
+      'I built a harness that connects titles, publishers, and company KPIs to the context in the data map (metric definitions, lineage, interpretation rules), and let AI generate analysis reports on top of it, served as the AI Insights menu of the internal visualization platform. The questions decision makers ask repeatedly were defined as analysis topics, validated, and then carried into operational features such as alerts and guards. Guardrails were built in: inferences labeled as estimates, example values synthetic only.',
     change:
-      'The team uses AI tools daily, while cost and data exposure limits are held by the tooling rather than by attention. The PoC is now a decision point on whether to adopt.',
-    stack: ['Claude Code', 'Gemini API', 'duckdb', 'Athena', 'BigQuery'],
-    evidence: 'Operated under the security policy',
-    period: '2025.10 – present',
-    chapter: 'data'
+      'The business unit, overseas and domestic content, IP strategy, and platform planning organizations responded, and a business-unit practitioner asked for access to the AI Insights menu to use in operations. The analyses are moving from reports into operational features, in consultation with the consuming teams.',
+    stack: ['Claude Code', 'Gemini API', 'BigQuery', 'duckdb', 'Athena'],
+    evidence: 'Access requests from several organizations (2026)',
+    period: '2026.01 – present',
+    chapter: 'data',
+    myPart: 'Data contextualization (data map) and the AI harness, design and implementation; defining and validating the analysis topics',
+    // TODO(kyo): confirm the team's part (menu UI, access operations)
+    teamPart: 'AI Insights menu UI and access operations'
   },
   {
     id: 'E',
@@ -75,22 +85,26 @@ export const cases: Case[] = [
     stack: ['Kotlin', 'Java', 'Python', 'TypeScript', 'AWS'],
     evidence: 'Operating scope held',
     period: '2025.10 – present',
-    chapter: 'data'
+    chapter: 'data',
+    myPart: 'Covered data (Python, SQL) and frontend (React) myself',
+    teamPart: 'Cross-coverage arrangement for API and AI'
   },
   {
     id: 'F',
     competency: 'Stakeholder collaboration · resolve disagreement through criteria and boundaries',
     title: 'Agreeing on criteria and boundaries instead of persuading',
     problem:
-      'The data team was drifting into a request-processing unit. Meanwhile, replacing the batch executor (a CI tool) with Airflow looked to the infrastructure team like "the same thing".',
+      'The data team was drifting into a request-processing unit. Meanwhile, on replacing the batch executor (a CI tool) with Airflow, each organization weighed the operational burden and the expected benefit differently.',
     approach:
-      'Through stakeholder interviews and trips to headquarters I agreed priorities directly with the CEO and the planning, content, and advertising organizations. The executor question I treated as an operations argument, not a matter of taste. I discussed it with the infrastructure team first, then narrowed the remaining gap by making the criteria explicit: a flow driven by schedule plus sensing (a contract) rather than tasks fired at human-chosen clock times cuts batch time sharply and makes re-running from the point of failure unambiguous. I reported this to technical leadership and redrew ownership between infrastructure operations (cluster, workers) and data operations (DAGs, contracts).',
+      'Through stakeholder interviews and trips to headquarters I agreed priorities directly with the CEO and the planning, content, and advertising organizations. The executor question I treated as a matter of operating criteria, not taste. I discussed it with the infrastructure team first to align how each side saw burden and benefit, then narrowed the remaining gap by making the criteria explicit: a flow driven by schedule plus sensing (a contract) rather than tasks fired at human-chosen clock times cuts batch time sharply and makes re-running from the point of failure unambiguous. I reported this to technical leadership and redrew ownership between infrastructure operations (cluster, workers) and data operations (DAGs, contracts).',
     change:
       'The planning organization now designs experiments against our effect-analysis screens. The executor change became a task agreed across organizations rather than one team\'s demand.',
     stack: [],
-    evidence: 'Some thirty stakeholder interviews per half-year · two HQ trips',
+    evidence: 'Some thirty stakeholder interviews per half-year · three HQ trips this year',
     period: '2025.10 – present',
-    chapter: 'data'
+    chapter: 'data',
+    myPart: 'Ran the interviews, wrote up the operating criteria and reported to leadership, drafted the ownership boundary',
+    teamPart: 'The boundary itself was agreed with the infrastructure team and leadership'
   },
   {
     id: 'G',
@@ -106,6 +120,45 @@ export const cases: Case[] = [
     evidence: 'Hundreds of nodes · thousands of relations, refreshed weekly',
     // TODO(kyo): confirm start date
     period: '2026 – present',
-    chapter: 'data'
+    chapter: 'data',
+    myPart: 'Designed and implemented the extractor, ontology, and static compilation (with AI)',
+    teamPart: 'Relation vetting with the team and business stewards'
+  },
+  {
+    id: 'H',
+    competency: 'Internal tools · legacy redesign',
+    title: 'Rebuilding the group intranet on a new structure',
+    problem:
+      'The group-wide internal systems mixed an aging board engine with .NET services, so fixing one feature meant touching several stacks at once. Systems newly needed, such as recruitment personality assessments, had nowhere to land.',
+    // TODO(kyo): confirm the "decision" sentence: the actual order and criteria of the migration
+    approach:
+      'I redesigned the web office portal from the board engine to a Java monolith and normalized the database. The employee search service was rebuilt from .NET to Java, and the recruitment assessment system was built new and taken through stabilization. Consolidating onto one stack was the first decision; services with clear boundaries moved first, in order.',
+    change:
+      'Operations and handover became simpler on one stack. That experience carries into the pipeline principle I hold today: do not let per-table exceptions accumulate.',
+    stack: ['Java', 'JavaScript', 'Oracle', 'MSSQL'],
+    evidence: 'Two rebuilds · one new system (2018.11 – 2021.09)',
+    period: '2018.11 – 2021.09',
+    chapter: 'backend',
+    myPart: 'Led the projects; did the redesign and implementation myself',
+    // TODO(kyo): confirm team size and split
+    teamPart: 'Collaboration within the technology division'
+  },
+  {
+    id: 'I',
+    competency: 'Operational pipelines · external integrations',
+    title: 'Turning coupon delivery into a state-driven pipeline',
+    problem:
+      'A mobile coupon must arrive by SMS or email right after payment, and exchanges and refunds must be authenticated in real time at store POS terminals. Delivery failures, retries, and partner-specific formats made up most of the operational burden.',
+    // TODO(kyo): confirm the "decision" sentence: why a DB-state-driven queue
+    approach:
+      'I automated SMS and email delivery as a queue driven by delivery state kept in the database, processing on state transitions. Keeping state in the database meant a failure could be found with one query and reprocessed from that point. I designed and built the POS exchange and refund authentication on Netty, and developed the partner APIs for issuing coupons and unified redemption.',
+    change:
+      'Delivery and reprocessing became something an operator does by reading the state and re-running. The habit of putting "failure points visible, re-run only the affected range" first in my pipelines today started here.',
+    stack: ['Java', 'MySQL', 'Redis', 'Netty', 'Linux'],
+    evidence: 'Delivery pipeline · POS integration · partner APIs (2013 – 2018)',
+    period: '2013.04 – 2018.10',
+    chapter: 'backend',
+    myPart: 'Implemented the delivery pipeline, the POS authentication module, and the partner APIs',
+    teamPart: 'Storefront frontend and the next-generation platform project as team efforts'
   }
 ];

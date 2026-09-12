@@ -89,6 +89,14 @@ const Platform: React.FC = () => {
             </TableBody>
           </Table>
         </TableContainer>
+        {platform.myPart && (
+          <Paper variant="outlined" sx={{ mt: 2, p: 2 }}>
+            <Typography variant="overline" color="primary" component="div">
+              {s.platform.myPart}
+            </Typography>
+            <Typography variant="body2">{platform.myPart}</Typography>
+          </Paper>
+        )}
         {platform.evidence && (
           <Stack direction="row" spacing={1} sx={{ mt: 1.5 }}>
             <Typography variant="caption" color="text.secondary">

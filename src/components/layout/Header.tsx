@@ -6,7 +6,7 @@ import { useLocale, useStrings, useContent } from '../../i18n/LocaleContext';
 import { SectionId } from '../../i18n/strings';
 import PDFDownloadButton from '../PDFDownloadButton';
 
-const NAV: SectionId[] = ['platform', 'stories', 'how', 'ai', 'journey', 'stack', 'leadership', 'contact'];
+const NAV: SectionId[] = ['journey', 'platform', 'stories', 'ai', 'how', 'leadership', 'stack', 'contact'];
 
 const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 

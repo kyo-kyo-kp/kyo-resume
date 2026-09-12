@@ -5,7 +5,7 @@
 
 export type Locale = 'ko' | 'en';
 export type ChapterId = 'backend' | 'platform' | 'data';
-export type CaseId = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
+export type CaseId = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I';
 
 export interface Link {
   label: string;
@@ -56,6 +56,8 @@ export interface Platform {
   /** mermaid 소스. 역할 구조만, 시스템명 없음. */
   diagram: string;
   evidence?: string;
+  /** 직접 구현과 팀의 몫 구분 한 줄. */
+  myPart?: string;
 }
 
 export interface Case {
@@ -72,6 +74,10 @@ export interface Case {
   evidence?: string;
   period: string;
   chapter: ChapterId;
+  /** 직접 구현한 부분. 팀장 직함과 개인 기여를 구분한다. */
+  myPart?: string;
+  /** 팀과 함께 달성한 부분. */
+  teamPart?: string;
 }
 
 export interface Principle {
@@ -83,6 +89,11 @@ export interface Principle {
 
 export interface AiWorkflow {
   headline: string;
+  /** 무엇이 달라졌나 — 섹션에서 가장 먼저 보인다. */
+  changed: string;
+  /** 어떻게 — 맥락화와 하네스. */
+  how: string;
+  /** 가드레일 도입부. */
   summary: string;
   guardrails: Criterion[];
   /** 정직하게 쓴 한계. 한 줄 이상 필수. */

@@ -58,8 +58,8 @@ const Journey: React.FC = () => {
                     <Typography variant="overline" color="text.secondary" component="div" sx={{ mb: 0.5 }}>
                       {s.journey.details}
                     </Typography>
-                    {items.map((e) => (
-                      <Accordion key={e.id} disableGutters elevation={0} sx={{ bgcolor: 'transparent', '&:before': { display: 'none' }, borderTop: 1, borderColor: 'divider' }}>
+                    {items.map((e, ei) => (
+                      <Accordion key={e.id} defaultExpanded={idx === 0 && ei === 0} disableGutters elevation={0} sx={{ bgcolor: 'transparent', '&:before': { display: 'none' }, borderTop: 1, borderColor: 'divider' }}>
                         <AccordionSummary expandIcon={<ExpandMore />} sx={{ px: 0 }}>
                           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 0, sm: 2 }} sx={{ width: '100%', alignItems: { sm: 'baseline' } }}>
                             <Typography sx={{ fontWeight: 700 }}>{label(e.company)}</Typography>

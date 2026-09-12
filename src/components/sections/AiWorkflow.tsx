@@ -10,10 +10,33 @@ const AiWorkflow: React.FC = () => {
   const { aiWorkflow } = useContent();
   const s = useStrings();
   return (
-    <SectionShell id="ai" eyebrow={s.ai.eyebrow} title={aiWorkflow.headline} subtitle={aiWorkflow.summary} tone="paper">
+    <SectionShell id="ai" eyebrow={s.ai.eyebrow} title={aiWorkflow.headline} tone="paper">
       <Reveal>
-        <Typography variant="h5" sx={{ mb: 2 }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '7fr 5fr' }, gap: { xs: 3, md: 5 }, mb: 6 }}>
+          <Box>
+            <Typography variant="overline" color="primary" component="div">
+              {s.ai.changed}
+            </Typography>
+            <Typography variant="subtitle1" sx={{ fontSize: { md: '1.15rem' } }}>
+              {aiWorkflow.changed}
+            </Typography>
+          </Box>
+          <Box>
+            <Typography variant="overline" color="text.secondary" component="div">
+              {s.ai.how}
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              {aiWorkflow.how}
+            </Typography>
+          </Box>
+        </Box>
+      </Reveal>
+      <Reveal>
+        <Typography variant="h5" sx={{ mb: 0.5 }}>
           {s.ai.guardrails}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2, maxWidth: 760 }}>
+          {aiWorkflow.summary}
         </Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(5, 1fr)' }, gap: 2 }}>
           {aiWorkflow.guardrails.map((g, i) => (

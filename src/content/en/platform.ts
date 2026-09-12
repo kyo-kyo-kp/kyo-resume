@@ -13,7 +13,7 @@ export const platform: Platform = {
   problem:
     'On a platform where tens of millions of people read and pay, reading and revenue data lived in several systems, and the pipeline was an overnight batch relay hopping from on-premises to the cloud. Each job ran, but "where did it fail and where do we restart" was known only to whoever built it.',
   approach:
-    'I ran ingestion (batch and real time), layered transformation, an API, and a visualization site as one platform, and pinned metric definitions in the mart layer. On top of that I started a redesign with three criteria: operational simplicity, structural uniformity, and resilience to change. I fixed the Raw Landing contract (Manifest, Watermark, validation) before choosing an executor, and separated orchestration from extraction.',
+    'I ran ingestion (batch and real time), layered transformation, an API, and a visualization site as one platform, and pinned metric definitions in the mart layer. On top of that I started a redesign with three criteria: operational simplicity, structural uniformity, and resilience to change. The design fixes the Raw Landing contract (Manifest, Watermark, validation) before choosing an executor and separates orchestration from extraction. It is now at the validation (PoC) stage.',
   change:
     'Practitioners see the same metric definitions every morning without writing SQL. Service held through event peaks and outages. The next step turns "a pipeline you can only operate if you know who built it" into "a pipeline anyone can recover by reading its contract."',
   differently:
@@ -88,5 +88,8 @@ export const platform: Platform = {
     G1[Governance · cost · access · SLA · monitoring] -.-> W1 & R1 & M1
   end
   ASIS ==>|Contract first, executor later| TOBE`,
-  evidence: 'Active users grew from one team to several divisions · operating scope held through staffing changes'
+  evidence: 'Active users grew from one team to several divisions · operating scope held through staffing changes',
+  // TODO(kyo): confirm the split
+  myPart:
+    'Built myself: pipeline standards and quality DAGs, the segment data models and async queries, API caching and ETags, the data map and AI harness, the redesign proposal. With the team: screens, new marts and DAGs, day-to-day operations.'
 };
