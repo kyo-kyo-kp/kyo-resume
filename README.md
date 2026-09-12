@@ -155,7 +155,13 @@ const theme = createTheme({
 ## 🌤️ 날씨 인사말 기능 설정
 
 ### API 키 설정
-프로젝트 루트에 `.env` 파일을 생성하고 다음 환경변수를 설정하세요:
+`.env.example`을 복사해 프로젝트 루트에 `.env` 파일을 만들고 값을 채우세요. `.env`는 git에 추적되지 않습니다(`.gitignore`).
+
+> ⚠️ `REACT_APP_` 접두사 변수는 CRA 빌드 시 클라이언트 번들에 그대로 포함되어 배포 사이트에서 노출됩니다. 키는 반드시 도메인/쿼터 제한을 걸고, 가능하면 서버리스 프록시 뒤로 옮기세요.
+
+```bash
+cp .env.example .env
+```
 
 ```bash
 # OpenWeatherMap API 키 (날씨 정보용)
@@ -167,8 +173,12 @@ REACT_APP_OPENWEATHER_API_KEY=your_openweather_api_key_here
 REACT_APP_OPENAI_API_KEY=your_openai_api_key_here
 
 # Google Gemini API 키 (OpenAI 대신 사용할 경우)
-# https://makersuite.google.com/app/apikey 에서 API 키 발급
+# https://aistudio.google.com/app/apikey 에서 API 키 발급
 REACT_APP_GEMINI_API_KEY=your_gemini_api_key_here
+
+# (선택) Gemini 모델명. 기본값 gemini-3.6-flash
+# gemini-1.5/2.5 계열은 제공 종료되어 404가 발생합니다 (2026-09 확인).
+REACT_APP_GEMINI_MODEL=gemini-3.6-flash
 ```
 
 ### API 서비스별 특징
