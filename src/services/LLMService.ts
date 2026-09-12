@@ -7,7 +7,9 @@ import { rainbowColors } from '../utils/colorPalette';
  */
 class LLMService {
   private readonly OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-  private readonly GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent';
+  // gemini-1.5/2.5 계열은 v1beta generateContent에서 제공 종료(404, 2026-09 확인). 필요 시 env로 교체.
+  private readonly GEMINI_MODEL = process.env.REACT_APP_GEMINI_MODEL || 'gemini-3.6-flash';
+  private readonly GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${this.GEMINI_MODEL}:generateContent`;
   private readonly OPENAI_API_KEY = process.env.REACT_APP_OPENAI_API_KEY || '';
   private readonly GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY || '';
   private readonly CACHE_KEY = 'llm_greeting_cache';
@@ -24,6 +26,7 @@ class LLMService {
     console.log('LLM Service 초기화:');
     console.log('- OpenAI API 키:', this.OPENAI_API_KEY ? '✅ 설정됨' : '❌ 설정되지 않음');
     console.log('- Gemini API 키:', this.GEMINI_API_KEY ? '✅ 설정됨' : '❌ 설정되지 않음');
+    console.log('- Gemini 모델:', this.GEMINI_MODEL);
   }
 
   /**
