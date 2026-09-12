@@ -1,210 +1,53 @@
-# Kyo's Resume SPA
+# Kyo's Resume
 
-React + TypeScript + Material UI로 구축된 개인 이력서 Single Page Application (SPA) 프로젝트입니다.
+김규호 Kyuho Kim (Kyo) · Data Product Engineer & Team Lead 의 이력서 사이트.
+React 19 + TypeScript 5 + MUI 7 로 만든 단일 페이지이며, 콘텐츠(한국어·영어)와 화면을 분리해 둔 것이 구조의 핵심이다.
 
-## 🚀 프로젝트 개요
-
-이 프로젝트는 개인 이력을 체계적으로 정리하고 시각적으로 표현하는 현대적인 웹 애플리케이션입니다. 반응형 디자인과 인터랙티브한 요소를 통해 사용자에게 최적화된 경험을 제공합니다.
-
-## 🛠️ 기술 스택
-
-- **Frontend Framework**: React 18 + TypeScript
-- **UI Library**: Material-UI (MUI) v5
-- **Styling**: Emotion (MUI 기본 스타일링)
-- **Animation**: Framer Motion
-- **State Management**: React Hooks
-- **Build Tool**: Create React App
-
-## 📦 설치 및 실행
-
-### 필수 요구사항
-- Node.js 16.0 이상
-- npm 또는 yarn
-
-### 설치
-```bash
-# 의존성 설치
-npm install
-```
-
-### 개발 서버 실행
-```bash
-# 개발 서버 시작 (http://localhost:3000)
-npm start
-```
-
-### 빌드
-```bash
-# 프로덕션 빌드
-npm run build
-```
-
-### 테스트
-```bash
-# 테스트 실행
-npm test
-```
-
-## 📁 프로젝트 구조
+## 구조
 
 ```
 src/
-├── components/          # 재사용 가능한 컴포넌트
-│   ├── Header.tsx      # 네비게이션 헤더
-│   ├── HeroSection.tsx # 메인 히어로 섹션
-│   └── AboutSection.tsx # About Me 섹션
-├── data/               # 데이터 파일
-│   └── resumeData.ts   # 이력서 데이터
-├── types/              # TypeScript 타입 정의
-│   └── index.ts        # 공통 타입 정의
-├── App.tsx             # 메인 App 컴포넌트
-└── index.tsx           # 앱 진입점
+  content/            콘텐츠. ko/ 가 원본, en/ 은 번역. 같은 SiteContent 타입을 공유
+    ko/  en/          profile · platform · cases(A~G) · principles · aiWorkflow · journey · stack · leadership
+    index.ts          getContent(locale)
+  i18n/               LocaleContext(로케일 상태·훅), strings(섹션 제목·라벨 같은 UI 문구)
+  theme/              MUI 테마(다크 기본, 악센트 1색), ColorModeContext
+  components/
+    layout/           Header(내비·KO/EN·테마·PDF), SectionShell, Footer
+    sections/         Hero → Platform → Stories → HowIWork → AiWorkflow → Journey → Stack → Leadership → Contact
+    ui/               CaseCard, MermaidDiagram, Labeled, TagList, Reveal
+  data/resumeData.ts  회사별 상세(경력·학력·자격). Journey 아코디언이 사용
+  types/              content.ts(콘텐츠 타입), index.ts(기존 데이터 타입)
 ```
 
-## 🎨 주요 기능
+섹션 순서는 채용 담당자가 스캔하는 순서다. 첫 화면은 포지셔닝 한 문장과 "내가 푸는 문제" 세 줄, 두 번째 화면은 데이터 플랫폼 아키텍처(운영 중 → 설계)다.
 
-### ✅ 구현 완료
-- **반응형 네비게이션**: 스크롤 시 투명도 변화, 모바일 햄버거 메뉴
-- **히어로 섹션**: 그라데이션 배경, 애니메이션 효과, 소셜 링크
-- **About Me 섹션**: 개인 정보, 관심사, 개발 철학
-- **Material-UI 테마**: 커스텀 색상 팔레트 및 타이포그래피
-- **IP 기반 지역 유추**: 사용자 위치 자동 감지 및 캐싱
-- **날씨 정보 연동**: OpenWeatherMap API를 활용한 실시간 날씨 정보
+## 콘텐츠 규칙
 
-### 🚧 구현 예정
-- **LLM 기반 인사말**: OpenAI/Gemini API를 활용한 개인화된 인사말 생성
-- **말풍선 UI**: 프로필 사진 위에 표시되는 인터랙티브한 말풍선
-- **Experience 섹션**: 경력 정보 타임라인
-- **Skills 섹션**: 기술 스택 시각화 (차트, 프로그레스 바)
-- **Projects 섹션**: 포트폴리오 갤러리
-- **Contact 섹션**: 연락처 폼 및 정보
+- 카드 제목·헤드라인에 숫자를 쓰지 않는다. 숫자는 각주(`evidence`)에만, 상대 표현으로.
+- 플랫폼 규모는 회사가 공개한 수치 또는 자릿수 표현만, 문제 맥락에서 한 번만.
+- 사내 시스템·계정 이름, 테이블명, 동료 이름, 내부 URL, 비즈니스 수치, 로드맵 일정은 쓰지 않는다.
+- 계획 중인 것은 "설계했다"까지만.
+- **문체**: 서술 문장은 합쇼체(~합니다). 제목·표 셀·태그는 명사형. How I work 의 원칙 제목만 좌우명이라 해라체를 유지한다. 1인칭은 "제가/저는"으로 쓰거나 생략한다.
+- 문구를 바꿀 때는 `content/ko` 를 먼저 고치고 `content/en` 을 맞춘다. 코드 안 `TODO(kyo)` 는 채워야 할 자리.
 
-## 🎯 주요 특징
-
-### 디자인
-- **모던한 UI/UX**: Material Design 3 기반
-- **반응형 디자인**: 모든 디바이스 최적화
-- **애니메이션**: Framer Motion을 활용한 부드러운 전환 효과
-- **접근성**: WCAG 가이드라인 준수
-
-### 기술적 특징
-- **TypeScript**: 타입 안정성 보장
-- **컴포넌트 기반**: 재사용 가능한 모듈화된 구조
-- **성능 최적화**: 코드 스플리팅 및 지연 로딩
-- **SEO 친화적**: 메타 태그 및 구조화된 데이터
-
-## 📊 데이터 구조
-
-프로젝트는 `src/data/resumeData.ts` 파일에서 중앙 집중식으로 데이터를 관리합니다:
-
-```typescript
-// 개인 정보
-export const personalInfo: PersonalInfo = {
-  name: "Kyo",
-  title: "Software Developer",
-  // ... 기타 정보
-};
-
-// 경력 정보
-export const experiences: Experience[] = [
-  // ... 경력 데이터
-];
-
-// 기술 스택
-export const skills: Skill[] = [
-  // ... 기술 데이터
-];
-```
-
-## 🚀 배포
-
-### Vercel 배포 (권장)
-```bash
-# Vercel CLI 설치
-npm i -g vercel
-
-# 배포
-vercel
-```
-
-### Netlify 배포
-```bash
-# 빌드 후 dist 폴더를 Netlify에 업로드
-npm run build
-```
-
-## 🔧 커스터마이징
-
-### 색상 테마 변경
-`src/App.tsx`의 `theme` 객체에서 색상을 수정할 수 있습니다:
-
-```typescript
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#667eea', // 메인 색상
-    },
-    // ... 기타 색상 설정
-  },
-});
-```
-
-### 데이터 수정
-`src/data/resumeData.ts` 파일에서 개인 정보, 경력, 프로젝트 등을 수정할 수 있습니다.
-
-## 🌤️ 날씨 인사말 기능 설정
-
-### API 키 설정
-`.env.example`을 복사해 프로젝트 루트에 `.env` 파일을 만들고 값을 채우세요. `.env`는 git에 추적되지 않습니다(`.gitignore`).
-
-> ⚠️ `REACT_APP_` 접두사 변수는 CRA 빌드 시 클라이언트 번들에 그대로 포함되어 배포 사이트에서 노출됩니다. 키는 반드시 도메인/쿼터 제한을 걸고, 가능하면 서버리스 프록시 뒤로 옮기세요.
+## 실행
 
 ```bash
-cp .env.example .env
+npm install
+npm start          # http://localhost:3000
+npm test           # 스모크 테스트 (이름 렌더, 케이스 카드 7개)
+npm run build      # 프로덕션 빌드
+npx tsc --noEmit   # 타입 체크
 ```
 
-```bash
-# OpenWeatherMap API 키 (날씨 정보용)
-# https://openweathermap.org/api 에서 무료 계정 생성 후 API 키 발급
-REACT_APP_OPENWEATHER_API_KEY=your_openweather_api_key_here
+외부 API 키나 환경변수는 없다. 다이어그램은 `mermaid` 를 동적 import 로 렌더한다.
+`.npmrc` 의 `legacy-peer-deps=true` 는 react-scripts 5 가 TypeScript 5 를 peer 로 인정하지 않아 둔 것이다.
 
-# OpenAI API 키 (LLM 인사말 생성용)
-# https://platform.openai.com/api-keys 에서 API 키 발급
-REACT_APP_OPENAI_API_KEY=your_openai_api_key_here
+## PDF
 
-# Google Gemini API 키 (OpenAI 대신 사용할 경우)
-# https://aistudio.google.com/app/apikey 에서 API 키 발급
-REACT_APP_GEMINI_API_KEY=your_gemini_api_key_here
+헤더의 "PDF로 저장"은 브라우저 인쇄 대화상자를 연다(대상: PDF로 저장). 인쇄 직전에 테마가 라이트로 강제 전환되고, 접힌 회사별 상세가 펼쳐지며, 스크롤 애니메이션이 해제된다(`src/App.css` 의 `@media print`). 파일명은 `Kyuho-Kim-Kyo-Resume` 로 제안된다.
 
-# (선택) Gemini 모델명. 기본값 gemini-3.6-flash
-# gemini-1.5/2.5 계열은 제공 종료되어 404가 발생합니다 (2026-09 확인).
-REACT_APP_GEMINI_MODEL=gemini-3.6-flash
-```
+## 배포
 
-### API 서비스별 특징
-- **OpenWeatherMap**: 무료 tier 1,000 calls/day
-- **OpenAI GPT**: 사용량 기반 과금 (월 $5-20 예상)
-- **Google Gemini**: 무료 tier 제공
-
-### 캐싱 정책
-- **지역 정보**: 24시간 캐시 (IP는 자주 변경되지 않음)
-- **날씨 정보**: 1시간 캐시 (날씨는 자주 변함)
-- **LLM 응답**: 6시간 캐시 (같은 조건에서 재사용)
-
-## 📝 라이선스
-
-이 프로젝트는 MIT 라이선스 하에 배포됩니다.
-
-## 🤝 기여
-
-프로젝트 개선을 위한 기여를 환영합니다. Pull Request를 통해 기여해주세요.
-
-## 📞 연락처
-
-프로젝트에 대한 문의사항이 있으시면 이슈를 생성해주세요.
-
----
-
-**개발자**: Kyo  
-**버전**: 1.0.0  
-**최종 업데이트**: 2024년 12월
+Vercel. `vercel.json` 참고.

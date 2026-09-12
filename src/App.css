@@ -1,137 +1,74 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* PDF 출력 시 스타일 */
+/* 인쇄(PDF 저장) 전용 스타일. 화면 테마는 인쇄 시 라이트로 강제 전환된다(ColorModeContext). */
 @media print {
-  body {
-    margin: 0;
-    padding: 0;
+  @page {
+    size: A4;
+    margin: 12mm 12mm 14mm;
   }
-  
-  /* PDF 다운로드 버튼 숨기기 */
-  .pdf-download-button {
+
+  html, body {
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* 화면 전용 요소 */
+  .pdf-hide-in-print,
+  header,
+  footer {
     display: none !important;
   }
-  
-  /* 헤더 네비게이션 숨기기 */
-  header {
+
+  /* 스크롤 진입 애니메이션 해제: 인라인 opacity/transform 을 덮어쓴다 */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* 접힌 아코디언(회사별 상세) 펼침 */
+  .MuiCollapse-root {
+    height: auto !important;
+    visibility: visible !important;
+    min-height: 0 !important;
+  }
+  .MuiAccordionSummary-expandIconWrapper {
     display: none !important;
   }
-  
-  /* 페이지 나누기 최적화 */
-  .section {
-    page-break-inside: avoid;
+
+  /* 여백·폭 축소 */
+  section {
+    padding-top: 10mm !important;
+    padding-bottom: 8mm !important;
+    border-top: 0 !important;
   }
-  
-  /* 여백 조정 */
-  .MuiBox-root {
-    margin: 0 !important;
-    padding: 10px !important;
+  #home {
+    padding-top: 0 !important;
   }
-  
-  /* 색상 최적화 */
-  * {
-    color: black !important;
-    background: white !important;
+  .MuiContainer-root {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
-}
 
-/* 일반 스타일 */
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  /* 카드·표가 페이지 경계에서 잘리지 않게 */
+  .MuiPaper-root,
+  tr {
+    break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+  }
 
-/* PDF 캡처 시 배경 및 장식 요소 제거/단순화 */
-.pdf-capture * {
-  background: #ffffff !important;
-  box-shadow: none !important;
-}
+  /* 다이어그램은 폭에 맞춤 */
+  svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
 
-.pdf-capture .MuiAppBar-root,
-.pdf-capture header,
-.pdf-capture .MuiDrawer-root,
-.pdf-capture [data-pdf-button] {
-  display: none !important;
-}
-
-/* PDF 캡처 시 숨길 전용 블록 */
-.pdf-capture .pdf-hide-in-print {
-  display: none !important;
-}
-
-/* PDF 캡처 시 텍스트 가독성 보장: 흰 배경에서 흰 글씨 방지 */
-.pdf-capture,
-.pdf-capture * {
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
-  text-shadow: none !important;
-}
-
-/* 메인 히어로(#home) 섹션 타이포 전용 보정 */
-.pdf-capture #home .MuiTypography-root,
-.pdf-capture #home p,
-.pdf-capture #home div,
-.pdf-capture #home span {
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
-  background: transparent !important;
-}
-
-/* 그라데이션 배경 제거 및 텍스트 색상 강제 */
-.pdf-capture [style*="gradient"] {
-  background: #ffffff !important;
-  color: #000000 !important;
-}
-
-.pdf-capture [style*="color: white"],
-.pdf-capture [style*="color: rgb(255, 255, 255)"],
-.pdf-capture [style*="color: rgba(255, 255, 255"] {
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  /* 링크 주소 노출 방지, 버튼은 텍스트만 */
+  a[href]::after {
+    content: none !important;
+  }
+  .MuiButton-root {
+    box-shadow: none !important;
+  }
 }
