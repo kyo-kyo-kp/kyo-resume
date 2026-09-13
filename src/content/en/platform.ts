@@ -8,7 +8,6 @@ import { Platform } from '../../types/content';
 export const platform: Platform = {
   headline:
     'A data platform that ingests reading and revenue data in batch and in real time, transforms it, and reliably serves it to practitioners as a visualization site they check every morning',
-  // TODO(kyo): use exact figures only if the company has published them
   scaleContext: 'Kakao Piccoma, a webtoon platform with tens of millions of users and hundreds of thousands of titles',
   problem:
     'In the summer of 2024, Piccoma Japan had no data warehouse pipeline. On a platform where tens of millions of people read and pay, reading and revenue data lived in several systems, and source ingestion was an overnight batch relay hopping from on-premises to the cloud. Each job ran, but "where did it fail and where do we restart" was known only to whoever built it.',
@@ -46,9 +45,8 @@ export const platform: Platform = {
     {
       stage: 'Ingestion · Real time',
       problem: 'Event periods and home slots that must be seen "right now"',
-      // TODO(kyo): confirm the streaming stack
-      didWhat: 'Ran time-partitioned stream tables on a path separate from batch',
-      stack: ['Stream ingestion', 'Athena']
+      didWhat: 'WebFlux API → Kafka (AWS managed) → consumer → S3 (json.gz) → Athena → Redshift. Built by a former team member; I operate it now, and the infrastructure team runs Kafka',
+      stack: ['WebFlux', 'Kafka', 'S3', 'Athena', 'Redshift']
     },
     {
       stage: 'Transformation',
@@ -79,6 +77,7 @@ export const platform: Platform = {
   subgraph ASIS[In operation]
     direction LR
     A0[Source DB replica] --> B0[On-prem batch] --> C0[Transfer relay] --> D0[S3 · Athena raw layer]
+    R0[Real time · API → Kafka → S3 json.gz] --> D0
     D0 --> E0[Mart layers l1 → l5] --> F0[API · Visualization · BI · Serving cache]
   end
   subgraph TOBE[Designed]

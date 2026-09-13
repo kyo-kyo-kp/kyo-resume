@@ -24,7 +24,9 @@ export const principles: Principle[] = [
   },
   {
     title: 'Make colleagues better than me',
-    description: 'Pass on the context I hold so the team moves faster and more precisely. Design so the team\'s result is bigger than any individual\'s.'
+    description:
+      'Pass on the context I hold so the team moves faster and more precisely. Design so the team\'s result is bigger than any individual\'s. The user clustering screen went with my colleagues\' proposal (set a target group, see its distribution) over mine (a data table with filters), and they were right.',
+    caseId: 'A'
   },
   {
     title: 'Questions before conclusions',

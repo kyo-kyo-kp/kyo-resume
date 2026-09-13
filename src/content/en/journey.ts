@@ -18,7 +18,7 @@ export const chapters: Chapter[] = [
     id: 'platform',
     title: 'Global Webtoon Platform',
     period: '2022.03 – 2024.06',
-    summary: 'Settlement, personalized recommendations, data ETL, and KPI improvements at Piccoma France.',
+    summary: 'Ran and developed the whole backend of Piccoma France: admin, statistics batches, settlement, data extraction, and personalized recommendations.',
     lesson:
       'Building settlement and recommendations taught me the data flows of the webtoon business first-hand. It was the turn from "making data" to "making data get used".',
     roles: ['Platform engineer'],

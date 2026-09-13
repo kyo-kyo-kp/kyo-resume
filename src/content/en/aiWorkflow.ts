@@ -34,8 +34,8 @@ export const aiWorkflow: AiWorkflow = {
   ],
   limitations: [
     'AI analysis reports assist interpretation but do not replace judgment. The more plausible a report looks, the greater the risk it is quoted without verification, so moving anything into operations always goes through the consuming teams.',
-    'Without separating inference from vetting, the catalog itself becomes a new source of misunderstanding. That is why the "estimate" label is enforced.'
-    // TODO(kyo): one concrete wrong answer or failure produced by AI (this will be the most trusted line in the section)
+    'Without separating inference from vetting, the catalog itself becomes a new source of misunderstanding. That is why the "estimate" label is enforced.',
+    'Ambiguous data yields ambiguous inference. One input was derived data with interpretation already baked in, arranged to make results look favorable, and when AI used it the answers often diverged sharply from the plain facts. I structured the responses as JSON keys and added a step that re-verifies each item against the fact data, and later removed that input entirely in favor of verified facts.'
   ],
   diagram: `flowchart LR
   H[Human · question and judgment] --> AG[Coding agent]

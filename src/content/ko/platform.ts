@@ -8,7 +8,6 @@ import { Platform } from '../../types/content';
 export const platform: Platform = {
   headline:
     '열람·매출 데이터를 배치와 실시간으로 수집하고, 가공해, 실무자가 매일 보는 시각화 사이트로 안정적으로 제공하는 데이터 플랫폼',
-  // TODO(kyo): 회사가 공개한 수치가 있으면 숫자로, 없으면 자릿수 표현 유지
   scaleContext: '카카오픽코마, 수천만 명이 이용하고 수십만 작품이 연재되는 웹툰 플랫폼',
   problem:
     '2024년 여름, 일본 픽코마에는 DW 데이터 파이프라인이 없었습니다. 수천만 사용자가 읽고 결제하는 플랫폼의 열람·매출 데이터는 여러 시스템에 흩어져 있었고, 원천 수급은 온프레미스에서 클라우드까지 여러 홉을 거치는 새벽 배치 릴레이였습니다. 개별 작업은 돌지만 "어디서 실패했고 어디부터 다시 돌릴지"는 만든 사람만 알았습니다.',
@@ -46,9 +45,8 @@ export const platform: Platform = {
     {
       stage: '수집 · 실시간',
       problem: '이벤트 기간·홈 슬롯처럼 "지금"을 봐야 하는 요구',
-      // TODO(kyo): 스트림 수집 기술 스택 확인
-      didWhat: '시간 파티션 스트림 테이블을 배치와 분리된 경로로 운영',
-      stack: ['스트림 수집', 'Athena']
+      didWhat: 'WebFlux API → Kafka(AWS 관리형) → 컨슈머 → S3(json.gz) → Athena → Redshift 가공 경로. 구현은 이전 팀원이 했고 지금은 제가 운영하며, Kafka 운영은 인프라 조직이 맡습니다',
+      stack: ['WebFlux', 'Kafka', 'S3', 'Athena', 'Redshift']
     },
     {
       stage: '가공',
@@ -79,6 +77,7 @@ export const platform: Platform = {
   subgraph ASIS[운영 중]
     direction LR
     A0[원천 DB 복제본] --> B0[온프레미스 배치] --> C0[전송 릴레이] --> D0[S3 · Athena 원천 계층]
+    R0[실시간 · API → Kafka → S3 json.gz] --> D0
     D0 --> E0[마트 계층 l1 → l5] --> F0[API · 시각화 · BI · 서빙 캐시]
   end
   subgraph TOBE[설계]

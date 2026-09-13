@@ -2,7 +2,7 @@ import { Case } from '../../types/content';
 
 /**
  * English mirror of ko/cases.ts. "Seven stories that start with a problem" (A-E data platform, F-G backend).
- * No numbers in titles. Diagrams show roles only, no internal system names. myPart/teamPart marked TODO need confirmation.
+ * No numbers in titles. Diagrams show roles only, no internal system names.
  */
 export const cases: Case[] = [
   {
@@ -20,7 +20,6 @@ export const cases: Case[] = [
     period: '2025.07 – 2025.12',
     chapter: 'data',
     myPart: 'Designed the three-axis definition and refresh data models (l2/l4), implemented the async query flow, built the screen PoC',
-    // TODO(kyo): confirm the team's part
     teamPart: 'Production UI and the push integration with the team'
   },
   {
@@ -121,18 +120,16 @@ export const cases: Case[] = [
     title: 'Rebuilding the group intranet on a new structure',
     problem:
       'The group-wide internal systems mixed an aging board engine with .NET services, so fixing one feature meant touching several stacks at once. Systems newly needed, such as recruitment personality assessments, had nowhere to land.',
-    // TODO(kyo): confirm the "decision" sentence: the actual order and criteria of the migration
     approach:
-      'I redesigned the web office portal from the board engine to a Java monolith and normalized the database. The employee search service was rebuilt from .NET to Java, and the recruitment assessment system was built new and taken through stabilization. Consolidating onto one stack was the first decision; services with clear boundaries moved first, in order.',
+      'I redesigned the web office portal from the board engine to a Java monolith and normalized the database. The employee search service was rebuilt from .NET to Java, and the recruitment assessment system was built new and taken through stabilization. Consolidating onto one stack was the first decision; services with clear boundaries moved first, in order. Instead of standing up new infrastructure and a database for every request, one monolith served each domain\'s screens, APIs, database schemas, and admin, separated by permission. It was a redesign so that a groupware team, which also takes on the work other teams would rather not, could keep a virtuous cycle going.',
     change:
       'Operations and handover became simpler on one stack. I learned then that allowing one exception means running two ways of operating, which is why the pipeline redesign today aims for one shared contract instead of a script per table.',
     stack: ['Java', 'JavaScript', 'Oracle', 'MSSQL'],
     evidence: 'Two rebuilds · one new system (2018.11 – 2021.09)',
     period: '2018.11 – 2021.09',
     chapter: 'backend',
-    myPart: 'Led the projects; did the redesign and implementation myself',
-    // TODO(kyo): confirm team size and split
-    teamPart: 'Collaboration within the technology division'
+    myPart: 'Led the redesign and did the design',
+    teamPart: 'Implementation together with the team\'s frontend and backend developers'
   },
   {
     id: 'G',
@@ -140,11 +137,10 @@ export const cases: Case[] = [
     title: 'Turning coupon delivery into a state-driven pipeline',
     problem:
       'A mobile coupon must arrive by SMS or email right after payment, and exchanges and refunds must be authenticated in real time at store POS terminals. Delivery failures, retries, and partner-specific formats made up most of the operational burden.',
-    // TODO(kyo): confirm the "decision" sentence: why a DB-state-driven queue
     approach:
-      'I automated SMS and email delivery as a queue driven by delivery state kept in the database, processing on state transitions. Keeping state in the database meant a failure could be found with one query and reprocessed from that point. I designed and built the POS exchange and refund authentication on Netty, and developed the partner APIs for issuing coupons and unified redemption.',
+      'I automated SMS and email delivery as a queue driven by delivery state kept in the database, processing on state transitions. Keeping state in the database meant a failure could be found with one query and reprocessed from that point. Since many failures came from external partners, having developers redo every failed scheduled delivery was a waste, so I added a delivery-failure screen to the admin where practitioners could resend themselves. I designed and built the POS exchange and refund authentication on Netty, and developed the partner APIs for issuing coupons and unified redemption.',
     change:
-      'Delivery and reprocessing became something an operator does by reading the state and re-running. Those five-plus years as a backend engineer handling the whole platform in an IDC environment, servers, databases, batches, and external integrations, became the foundation for the later move into data platforms.',
+      'Delivery and reprocessing left the developers\' hands: practitioners read the state in the admin and resend. Those five-plus years as a backend engineer handling the whole platform in an IDC environment, servers, databases, batches, and external integrations, became the foundation for the later move into data platforms.',
     stack: ['Java', 'MySQL', 'Redis', 'Netty', 'Linux', 'IDC'],
     evidence: 'Delivery pipeline · POS integration · partner APIs (2013 – 2018)',
     period: '2013.04 – 2018.10',

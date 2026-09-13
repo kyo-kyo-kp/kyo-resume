@@ -18,7 +18,7 @@ export const chapters: Chapter[] = [
     id: 'platform',
     title: 'Global Webtoon Platform',
     period: '2022.03 – 2024.06',
-    summary: '프랑스 픽코마에서 정산, 개인화 추천, 데이터 ETL, KPI 고도화를 수행했습니다.',
+    summary: '프랑스 픽코마에서 어드민, 통계 배치, 정산, 데이터 추출, 개인화 추천까지 백엔드 전반을 운영·개발했습니다.',
     lesson:
       '정산과 추천을 만들며 웹툰 비즈니스의 데이터 흐름을 몸으로 익혔습니다. 데이터를 "만드는 쪽"에서 "쓰이게 하는 쪽"으로 옮겨 가는 계기가 됐습니다.',
     roles: ['플랫폼 엔지니어'],

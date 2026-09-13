@@ -35,14 +35,12 @@ export const experiences: Experience[] = [
     company: "카카오픽코마",
     position: "플랫폼 엔지니어 (프랑스 픽코마)",
     period: "2022.03 - 2024.06",
-    description: "프랑스 픽코마 플랫폼 엔지니어. 글로벌 플랫폼의 운영과 개발을 맡았습니다.",
+    description: "프랑스 픽코마 플랫폼 엔지니어. 어드민, 통계 배치, 정산, 데이터 추출, 추천까지 백엔드 전반을 운영·개발했습니다.",
     technologies: ["Kotlin", "Java", "Python", "AWS", "AWS Personalize", "DocumentDB"],
-    // TODO(kyo): 연도 확인
     milestones: [
       { date: "2022.03", text: "프랑스 픽코마 플랫폼 개발 합류" },
-      { date: "2022 – 2023", text: "정산 시스템 고도화와 운영" },
-      { date: "2023", text: "AWS Personalize 기반 개인화 추천 도입" },
-      { date: "2023 – 2024", text: "데이터 ETL 파이프라인과 KPI 지표 고도화" },
+      { date: "2022 – 2024", text: "백엔드 전반 운영·개발: 어드민, 통계 배치, 정산, 데이터 추출" },
+      { date: "2022 – 2024", text: "AWS Personalize 기반 개인화 추천 도입, 데이터 ETL·KPI 지표 고도화" },
       { date: "2024.06", text: "일본 픽코마 데이터 조직으로 이동" }
     ],
     chapter: "platform"
@@ -69,7 +67,6 @@ export const experiences: Experience[] = [
     period: "2013.04 - 2018.10",
     description: "플랫폼개발팀 대리. 모바일 쿠폰 서비스 기프티쇼의 백엔드를 IDC 환경에서 5년 넘게 맡았습니다.",
     technologies: ["Java", "JavaScript", "MySQL", "Redis", "Docker", "Linux", "Netty"],
-    // TODO(kyo): 연도 확인
     milestones: [
       { date: "2013.04", text: "기프티쇼 백엔드 합류. 쇼핑몰 프론트(웹·모바일웹) 개발" },
       { date: "2013 – 2018", text: "쿠폰 발송 파이프라인: DB 상태 기반 큐, SMS·이메일 발송 자동화", caseId: "G" },
