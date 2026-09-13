@@ -59,6 +59,14 @@ const Platform: React.FC = () => {
           </Typography>
           <Typography variant="body1">{platform.scopeNote}</Typography>
         </Paper>
+        {platform.collaboration && (
+          <Paper variant="outlined" sx={{ mt: 2, p: 2.5 }}>
+            <Typography variant="overline" color="text.secondary" component="div">
+              {s.platform.collaboration}
+            </Typography>
+            <Typography variant="body1">{platform.collaboration}</Typography>
+          </Paper>
+        )}
       </Reveal>
 
       <Reveal>

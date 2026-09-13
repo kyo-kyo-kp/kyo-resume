@@ -15,12 +15,12 @@ export const principles: Principle[] = [
   {
     title: '기록은 행동을 지배한다',
     description: '결정과 근거를 분리해 남깁니다. 파이프라인도 같습니다. 계약을 보면 누구나 상태를 이해하고 같은 방법으로 복구할 수 있어야 합니다.',
-    caseId: 'C'
+    caseId: 'E'
   },
   {
     title: '의견이 갈리면 사람이 아니라 기준과 경계를 합의한다',
     description: '기술 취향으로 설득하지 않습니다. 판단 기준을 먼저 합의하고, 소유 경계를 새로 그립니다.',
-    caseId: 'F'
+    caseId: 'B'
   },
   {
     title: '동료가 나보다 더 잘하게 만든다',

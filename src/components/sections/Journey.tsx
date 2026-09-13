@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Chip, Paper, Stack, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Chip, Link, Paper, Stack, Typography } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import SectionShell from '../layout/SectionShell';
 import TagList from '../ui/TagList';
@@ -72,14 +72,34 @@ const Journey: React.FC = () => {
                           <Typography variant="body2" sx={{ mb: 1.5 }}>
                             {e.description}
                           </Typography>
-                          {e.achievements && (
-                            <Box component="ul" sx={{ m: 0, pl: 2.5, color: 'text.secondary' }}>
-                              {e.achievements.map((a) => (
-                                <Typography key={a} component="li" variant="body2" sx={{ mb: 0.5 }}>
-                                  {a}
-                                </Typography>
+                          {e.milestones ? (
+                            <Box component="ol" sx={{ m: 0, p: 0, listStyle: 'none', display: 'grid', rowGap: 0.75 }}>
+                              {e.milestones.map((m, mi) => (
+                                <Box key={`${m.date}-${mi}`} component="li" sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '120px 1fr' }, columnGap: 2 }}>
+                                  <Typography variant="body2" color="primary" sx={{ fontVariantNumeric: 'tabular-nums', fontWeight: 600 }}>
+                                    {m.date}
+                                  </Typography>
+                                  <Typography variant="body2" color="text.secondary">
+                                    {m.text}
+                                    {m.caseId && (
+                                      <Link href={`#case-${m.caseId}`} underline="hover" sx={{ ml: 1, fontWeight: 700, whiteSpace: 'nowrap' }}>
+                                        → {s.journey.seeCase} {m.caseId}
+                                      </Link>
+                                    )}
+                                  </Typography>
+                                </Box>
                               ))}
                             </Box>
+                          ) : (
+                            e.achievements && (
+                              <Box component="ul" sx={{ m: 0, pl: 2.5, color: 'text.secondary' }}>
+                                {e.achievements.map((a) => (
+                                  <Typography key={a} component="li" variant="body2" sx={{ mb: 0.5 }}>
+                                    {a}
+                                  </Typography>
+                                ))}
+                              </Box>
+                            )
                           )}
                           <Box sx={{ mt: 1.5 }}>
                             <TagList items={e.technologies} />

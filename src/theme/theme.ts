@@ -1,6 +1,6 @@
 import { createTheme, PaletteMode, Theme } from '@mui/material/styles';
 
-/** 절제된 시니어 톤. 차콜/딥 네이비 배경 + 악센트 1색(틸). 다크 기본. */
+/** 절제된 시니어 톤. 라이트(화이트) 기본, 다크는 토글. 악센트 1색(틸). */
 export const buildTheme = (mode: PaletteMode): Theme => {
   const dark = mode === 'dark';
   return createTheme({

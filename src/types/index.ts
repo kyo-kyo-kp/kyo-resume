@@ -20,6 +20,15 @@ export interface Experience {
   achievements?: string[];
   /** Journey 3막 매핑. 없으면 회사명으로 매핑한다. */
   chapter?: 'backend' | 'platform' | 'data';
+  /** 날짜가 붙은 연혁. 있으면 achievements 대신 렌더링한다. */
+  milestones?: Milestone[];
+}
+
+/** 회사별 상세의 연혁 한 줄. caseId 가 있으면 케이스 카드로 링크한다. */
+export interface Milestone {
+  date: string;
+  text: string;
+  caseId?: 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
 }
 
 // 학력 정보 타입

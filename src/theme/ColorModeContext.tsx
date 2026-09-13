@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { PaletteMode } from '@mui/material';
-import { ThemeProvider, CssBaseline, useMediaQuery } from '@mui/material';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 import { buildTheme } from './theme';
 
 interface ColorModeValue {
@@ -14,7 +14,7 @@ interface ColorModeValue {
 
 const STORAGE_KEY = 'color-mode';
 const PRINT_TITLE = 'Kyuho-Kim-Kyo-Resume';
-const ColorModeContext = createContext<ColorModeValue>({ mode: 'dark', toggle: () => undefined, printing: false, beginPrint: () => undefined });
+const ColorModeContext = createContext<ColorModeValue>({ mode: 'light', toggle: () => undefined, printing: false, beginPrint: () => undefined });
 
 const readStored = (): PaletteMode | null => {
   try {
@@ -25,15 +25,10 @@ const readStored = (): PaletteMode | null => {
   }
 };
 
-/** 다크 기본. 시스템 설정을 따르되, 사용자가 토글하면 localStorage 에 기억한다. */
+/** 라이트(화이트) 기본. 사용자가 토글하면 localStorage 에 기억한다. */
 export const ColorModeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const prefersLight = useMediaQuery('(prefers-color-scheme: light)');
-  const [mode, setMode] = useState<PaletteMode>(() => readStored() ?? 'dark');
+  const [mode, setMode] = useState<PaletteMode>(() => readStored() ?? 'light');
   const [printing, setPrinting] = useState(false);
-
-  useEffect(() => {
-    if (readStored() === null) setMode(prefersLight ? 'light' : 'dark');
-  }, [prefersLight]);
 
   // Cmd/Ctrl+P 로 직접 인쇄해도 라이트로 전환되도록 브라우저 이벤트를 듣는다.
   useEffect(() => {

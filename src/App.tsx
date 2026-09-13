@@ -26,10 +26,10 @@ const App: React.FC = () => (
           <Journey />
           <Platform />
           <Stories />
+          <StackSection />
           <AiWorkflow />
           <HowIWork />
           <Leadership />
-          <StackSection />
           <Contact />
         </Box>
         <Footer />

@@ -5,7 +5,7 @@
 
 export type Locale = 'ko' | 'en';
 export type ChapterId = 'backend' | 'platform' | 'data';
-export type CaseId = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' | 'I';
+export type CaseId = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
 
 export interface Link {
   label: string;
@@ -58,6 +58,8 @@ export interface Platform {
   evidence?: string;
   /** 직접 구현과 팀의 몫 구분 한 줄. */
   myPart?: string;
+  /** 합의 과정 — 의견이 갈렸을 때 기준과 경계로 푼 이야기. */
+  collaboration?: string;
 }
 
 export interface Case {
@@ -78,6 +80,8 @@ export interface Case {
   myPart?: string;
   /** 팀과 함께 달성한 부분. */
   teamPart?: string;
+  /** 구조를 보여주는 mermaid 소스. 역할 구조만, 시스템명 없음. */
+  diagram?: string;
 }
 
 export interface Principle {
@@ -89,8 +93,10 @@ export interface Principle {
 
 export interface AiWorkflow {
   headline: string;
-  /** 무엇이 달라졌나 — 섹션에서 가장 먼저 보인다. */
-  changed: string;
+  /** 도입부. 결과는 케이스로 넘기고 이 섹션은 원칙에 집중한다는 한 줄. */
+  intro: string;
+  /** 결과를 담은 케이스 링크. */
+  caseId?: CaseId;
   /** 어떻게 — 맥락화와 하네스. */
   how: string;
   /** 가드레일 도입부. */
@@ -121,8 +127,8 @@ export interface SkillGroup {
   operates: string[];
   /** 실무에서 사용 */
   uses: string[];
-  /** 학습 중 — 갭을 숨기지 않는다 */
-  learning: string[];
+  /** 깊이에 대한 정직한 주석. 예: "LLM 도구를 활용해 운영하는 수준" */
+  note?: string;
 }
 
 export interface Leadership {

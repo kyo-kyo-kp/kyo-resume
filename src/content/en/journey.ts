@@ -30,7 +30,7 @@ export const chapters: Chapter[] = [
     title: 'Data Platform & Lead',
     period: '2024.07 – present',
     summary:
-      'Data pipelines and the internal visualization platform for Piccoma Japan, plus segmentation, recommendations, and AI analysis. Led the team in practice from October 2025 and became Data Intelligence team lead in January 2026.',
+      'Designed and built the data pipeline from scratch for Piccoma Japan, which had no warehouse pipeline before, and now run the internal visualization platform plus segmentation, recommendations, and AI analysis. Led the team in practice from October 2025 and became Data Intelligence team lead in January 2026.',
     lesson:
       'A data team is done not when the screen ships but when practitioners use it repeatedly. After becoming lead I kept implementing pipelines and APIs myself, while also taking on the work of setting scope and priorities so each member finds their role and can work steadily.',
     roles: ['Data engineer', 'Data Intelligence team lead'],

@@ -11,7 +11,7 @@ src/
     ko/  en/          profile · platform · cases(A~G) · principles · aiWorkflow · journey · stack · leadership
     index.ts          getContent(locale)
   i18n/               LocaleContext(로케일 상태·훅), strings(섹션 제목·라벨 같은 UI 문구)
-  theme/              MUI 테마(다크 기본, 악센트 1색), ColorModeContext
+  theme/              MUI 테마(라이트 기본, 다크 토글, 악센트 1색), ColorModeContext
   components/
     layout/           Header(내비·KO/EN·테마·PDF), SectionShell, Footer
     sections/         Hero → Platform → Stories → HowIWork → AiWorkflow → Journey → Stack → Leadership → Contact

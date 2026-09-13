@@ -14,5 +14,5 @@ export const leadership: Leadership = {
    * Format — title: what changed / description: my first view → the member's reasoning → why I accepted → the outcome (three sentences).
    */
   teamDecision: undefined,
-  caseId: 'E'
+  caseId: 'D'
 };

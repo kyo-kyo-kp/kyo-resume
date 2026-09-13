@@ -9,22 +9,24 @@ export const personalInfo: PersonalInfo = {
   summary: "안녕하세요👋 개발을 즐기고자 하는 김규호입니다.\n\n현재에 안주하는 것보다 안정된 상황에서도 불합리한 요소를 찾아 해결하고, 일과 삶에서 '선순환'을 만들어 낼 줄 아는 사람이 되고자 합니다.\n\n개발자 중심이 아닌, 사용자 중심에서 편리한 서비스를 구축하는 개발자가 되고자 합니다."
 };
 
-// 경력 정보 (최근 → 과거). chapter 로 Journey 3막에 매핑
+// 경력 정보 (최근 → 과거). 설명은 역할 사실 두 문장, 성과는 날짜가 붙은 연혁(milestones)으로 쓴다. 서사는 여정·케이스가 맡는다.
 export const experiences: Experience[] = [
   {
     id: "1a",
     company: "카카오픽코마",
     position: "데이터인텔리전스팀 팀장 (2026.01~) · Sr.Pro 엔지니어",
     period: "2024.07 - 현재",
-    description: "일본 픽코마의 데이터 파이프라인과 사내 시각화 플랫폼을 설계·운영합니다. 열람·매출 데이터의 수집(배치·실시간)부터 가공, API, 시각화, 안정 운영까지 담당하며, 2025년 10월부터 실질적으로 팀을 리딩하고 2026년 1월 팀장이 됐습니다.",
+    description: "데이터인텔리전스팀 팀장(2026.01~), 그 전까지 Sr.Pro 엔지니어. 네 명 이하 팀으로 프론트·API·AI·데이터 파이프라인 네 영역의 운영을 책임집니다.",
     technologies: ["Kotlin", "Python", "SQL", "AWS", "Redshift", "Athena", "Airflow", "BigQuery", "PostgreSQL", "React"],
-    achievements: [
-      "데이터 파이프라인 설계·구축·운영과 l1~l4 레이어 표준, 일일 품질 검증 DAG (2024.07~)",
-      "함께 본 작품·유사 작품 추천을 데이터 툴 안에서 제공 (2025.03~)",
-      "RFM 기반 사용자 세그먼트를 재사용 가능한 기능으로 제품화 (2025 하반기)",
-      "사내 시각화 플랫폼을 의사결정 플랫폼으로 재정의, Redshift Serverless 도입과 운영 안정화 (2026 상반기)",
-      "지식 그래프 기반 DW 데이터 맵 구축 (2026)",
-      "채용(JD·면접 설계), 온보딩 문서, 주간·월간·스프린트 운영 체계 정비"
+    milestones: [
+      { date: "2024.07", text: "이전까지 DW 파이프라인이 없던 일본 픽코마에 데이터 파이프라인을 처음부터 설계·구축. 파티션 기반 멱등 DAG 표준과 일일 품질 검증" },
+      { date: "2025.03", text: "함께 본 작품·유사 작품 추천을 데이터 툴 안에서 제공" },
+      { date: "2025 하반기", text: "RFM 세그먼트를 재사용 가능한 기능으로 제품화", caseId: "A" },
+      { date: "2025 하반기", text: "Redshift Serverless 도입, 연말 장애 대응과 이벤트 기간 API 안정화" },
+      { date: "2025.10", text: "팀 실질 리딩 시작. 채용(JD·면접 설계)과 온보딩 문서, 주간·월간·스프린트 운영 체계 정비" },
+      { date: "2026.01", text: "팀장 발령. AI 분석 보고서 하네스 착수, 이후 6개월 개량", caseId: "C" },
+      { date: "2026 상반기", text: "사내 시각화 플랫폼을 의사결정 플랫폼으로 재정의. 본사 출장으로 로드맵 검증", caseId: "B" },
+      { date: "2026.07", text: "DW 데이터 맵(온톨로지) 구축 시작, 주간 자동 갱신으로 사내 배포", caseId: "E" }
     ],
     chapter: "data"
   },
@@ -33,12 +35,15 @@ export const experiences: Experience[] = [
     company: "카카오픽코마",
     position: "플랫폼 엔지니어 (프랑스 픽코마)",
     period: "2022.03 - 2024.06",
-    description: "프랑스 픽코마의 글로벌 플랫폼 운영과 개발을 담당했습니다. 정산, 개인화 추천, 데이터 ETL, KPI 고도화를 수행하며 웹툰 비즈니스의 데이터 흐름을 익혔습니다.",
+    description: "프랑스 픽코마 플랫폼 엔지니어. 글로벌 플랫폼의 운영과 개발을 맡았습니다.",
     technologies: ["Kotlin", "Java", "Python", "AWS", "AWS Personalize", "DocumentDB"],
-    achievements: [
-      "정산 시스템 고도화 및 운영",
-      "AWS Personalize 기반 개인화 추천 도입",
-      "데이터 ETL 파이프라인과 KPI 지표 고도화"
+    // TODO(kyo): 연도 확인
+    milestones: [
+      { date: "2022.03", text: "프랑스 픽코마 플랫폼 개발 합류" },
+      { date: "2022 – 2023", text: "정산 시스템 고도화와 운영" },
+      { date: "2023", text: "AWS Personalize 기반 개인화 추천 도입" },
+      { date: "2023 – 2024", text: "데이터 ETL 파이프라인과 KPI 지표 고도화" },
+      { date: "2024.06", text: "일본 픽코마 데이터 조직으로 이동" }
     ],
     chapter: "platform"
   },
@@ -47,43 +52,46 @@ export const experiences: Experience[] = [
     company: "넥슨코리아",
     position: "G3 / 백엔드 개발자",
     period: "2018.11 - 2022.03",
-    description: "넥슨 그룹 통합 사내 시스템 리뉴얼 프로젝트를 주도했습니다. 기술본부에서 채용 인성검사 시스템 신규 구축, 사원검색 서비스 리빌딩, 웹오피스 포털 전환을 수행했으며, 인텔리전스랩스에서는 넥슨플레이와 스푼플러스 앱 백엔드 운영을 담당했습니다.",
+    description: "G3 백엔드 개발자. 기술본부에서 그룹 사내 시스템을, 이후 인텔리전스랩스에서 앱 백엔드를 맡았습니다.",
     technologies: ["Java", "Python", "JavaScript", "Oracle", "MSSQL", "Git", "Jira"],
-    achievements: [
-      "넥슨플레이 앱 백엔드 운영 (Java 기반, 2021.10~)",
-      "스푼플러스 앱 백엔드 운영 (Python 기반, 2021.10~)",
-      "채용 인성검사 시스템 신규 구축 및 안정화 (2018.11~2021.09)",
-      "사원검색 서비스 닷넷 → Java 전환 리빌딩 (2018.11~2021.09)",
-      "웹오피스 포털 제로보드 → Java 기반 모놀리식 구조로 재설계 (2018.11~2021.09)"
-    ]
+    milestones: [
+      { date: "2018.11", text: "기술본부 합류. 채용 인성검사 시스템 신규 구축과 안정화" },
+      { date: "2018.11 – 2021.09", text: "사원검색 서비스를 닷넷에서 Java로 리빌딩", caseId: "F" },
+      { date: "2018.11 – 2021.09", text: "웹오피스 포털을 게시판 엔진에서 Java 모놀리식 구조로 재설계, DB 정규화", caseId: "F" },
+      { date: "2021.10", text: "인텔리전스랩스로 이동. 넥슨플레이(Java)·스푼플러스(Python) 앱 백엔드 운영" }
+    ],
+    chapter: "backend"
   },
   {
     id: "3",
     company: "케이티엠하우스 (현 KT알파)",
     position: "플랫폼개발팀 / 대리",
     period: "2013.04 - 2018.10",
-    description: "기프티쇼 백엔드 시스템 운영 및 신규 기능 개발을 담당했습니다. 쿠폰 발송 파이프라인, POS 연동 모듈, 외부 제휴사 연동 API를 개발했습니다.",
+    description: "플랫폼개발팀 대리. 모바일 쿠폰 서비스 기프티쇼의 백엔드를 IDC 환경에서 5년 넘게 맡았습니다.",
     technologies: ["Java", "JavaScript", "MySQL", "Redis", "Docker", "Linux", "Netty"],
-    achievements: [
-      "쿠폰 발송 파이프라인: DB 상태 기반 Queue 처리, SMS/Email 발송 자동화 시스템 구현",
-      "POS 연동 모듈 개발: Netty 기반 교환/반품 인증 시스템 설계 및 구축",
-      "외부 제휴사 연동 API 개발: 타사 쿠폰 발행 및 통합 교환 처리",
-      "기프티쇼 쇼핑몰 프론트 개발 (웹/모바일웹)",
-      "기프티쇼 플랫폼 차세대 고도화 프로젝트 참여"
-    ]
+    // TODO(kyo): 연도 확인
+    milestones: [
+      { date: "2013.04", text: "기프티쇼 백엔드 합류. 쇼핑몰 프론트(웹·모바일웹) 개발" },
+      { date: "2013 – 2018", text: "쿠폰 발송 파이프라인: DB 상태 기반 큐, SMS·이메일 발송 자동화", caseId: "G" },
+      { date: "2013 – 2018", text: "POS 연동 모듈: Netty 기반 교환·반품 인증 시스템 설계·구축", caseId: "G" },
+      { date: "2013 – 2018", text: "외부 제휴사 연동 API: 타사 쿠폰 발행과 통합 교환 처리", caseId: "G" },
+      { date: "2018", text: "기프티쇼 플랫폼 차세대 고도화 프로젝트 참여" }
+    ],
+    chapter: "backend"
   },
   {
     id: "4",
     company: "아이엔소프트",
     position: "개발사업본부 / 사원",
     period: "2011.12 - 2013.01",
-    description: "SKT TEMS 제주 전기차 충전소 시스템 고도화, 사내 인력관리 시스템 운영, NOC SOAP 서버 어플리케이션 개발을 담당했습니다.",
+    description: "개발사업본부 사원. 첫 직장에서 SI 프로젝트와 사내 시스템 운영을 맡았습니다.",
     technologies: ["Java", "JavaScript", "MySQL", "SOAP", "CVS"],
-    achievements: [
-      "SKT TEMS 제주 전기차 충전소 시스템 고도화 (3~4차년도 참여)",
-      "사내 인력관리 시스템(SUM) 운영 및 기능 개선",
-      "NOC SOAP 서버 어플리케이션 개발 및 통신 연동"
-    ]
+    milestones: [
+      { date: "2011.12", text: "합류. 사내 인력관리 시스템(SUM) 운영과 기능 개선" },
+      { date: "2012", text: "SKT TEMS 제주 전기차 충전소 시스템 고도화 (3~4차년도)" },
+      { date: "2012", text: "NOC SOAP 서버 애플리케이션 개발과 통신 연동" }
+    ],
+    chapter: "backend"
   }
 ];
 

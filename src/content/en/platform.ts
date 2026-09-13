@@ -11,9 +11,9 @@ export const platform: Platform = {
   // TODO(kyo): use exact figures only if the company has published them
   scaleContext: 'Kakao Piccoma, a webtoon platform with tens of millions of users and hundreds of thousands of titles',
   problem:
-    'On a platform where tens of millions of people read and pay, reading and revenue data lived in several systems, and the pipeline was an overnight batch relay hopping from on-premises to the cloud. Each job ran, but "where did it fail and where do we restart" was known only to whoever built it.',
+    'In the summer of 2024, Piccoma Japan had no data warehouse pipeline. On a platform where tens of millions of people read and pay, reading and revenue data lived in several systems, and source ingestion was an overnight batch relay hopping from on-premises to the cloud. Each job ran, but "where did it fail and where do we restart" was known only to whoever built it.',
   approach:
-    'I ran ingestion (batch and real time), layered transformation, an API, and a visualization site as one platform, and pinned metric definitions in the mart layer. On top of that I started a redesign with three criteria: operational simplicity, structural uniformity, and resilience to change. The design fixes the Raw Landing contract (Manifest, Watermark, validation) before choosing an executor and separates orchestration from extraction. It is now at the validation (PoC) stage.',
+    'I designed and built ingestion (batch and real time), layered transformation, an API, and a visualization site from scratch as one platform, ran it, and pinned metric definitions in the mart layer. On top of that I started a redesign with three criteria: operational simplicity, structural uniformity, and resilience to change. The design fixes the Raw Landing contract (Manifest, Watermark, validation) before choosing an executor and separates orchestration from extraction. It is now at the validation (PoC) stage.',
   change:
     'Practitioners see the same metric definitions every morning without writing SQL. Service held through event peaks and outages. The next step turns "a pipeline you can only operate if you know who built it" into "a pipeline anyone can recover by reading its contract."',
   differently:
@@ -32,6 +32,8 @@ export const platform: Platform = {
       description: 'The structure after landing stays intact even when the source location or the execution tool changes.'
     }
   ],
+  collaboration:
+    'On replacing the batch executor (a CI tool) with Airflow, each organization weighed the operational burden and the expected benefit differently. I treated it as a matter of operating criteria, not taste. I discussed it with the infrastructure team first to align how each side saw burden and benefit, then narrowed the remaining gap by making the criteria explicit: a flow driven by schedule plus sensing (a contract) rather than tasks fired at human-chosen clock times cuts batch time sharply and makes re-running from the point of failure unambiguous. I reported this to technical leadership and redrew ownership between infrastructure operations (cluster, workers) and data operations (DAGs, contracts). The executor change became a task agreed across organizations rather than one team\'s demand.',
   scopeNote:
     'The real-time path was deliberately left out of this redesign. Until the batch landing contract is fixed, real time would repeat the same problems.',
   stages: [
@@ -51,7 +53,7 @@ export const platform: Platform = {
     {
       stage: 'Transformation',
       problem: 'KPI definitions differing by team; ownership of business logic scattered',
-      didWhat: 'l1–l4 layers, annual aggregates and KPI marts, RFM and preference data models, schema change history, daily data quality DAGs',
+      didWhat: 'l1–l5 layers, annual aggregates and KPI marts, RFM and preference data models, schema change history, daily data quality DAGs',
       stack: ['SQL', 'Python', 'Redshift Serverless']
     },
     {
@@ -77,7 +79,7 @@ export const platform: Platform = {
   subgraph ASIS[In operation]
     direction LR
     A0[Source DB replica] --> B0[On-prem batch] --> C0[Transfer relay] --> D0[S3 · Athena raw layer]
-    D0 --> E0[Mart layers l1 → l4] --> F0[API · Visualization · BI · Serving cache]
+    D0 --> E0[Mart layers l1 → l5] --> F0[API · Visualization · BI · Serving cache]
   end
   subgraph TOBE[Designed]
     direction LR
@@ -87,9 +89,5 @@ export const platform: Platform = {
     P1 -->|Manifest detected| M1[Mart Airflow · quality · l2 / l3] --> F1[API · Visualization · BI]
     G1[Governance · cost · access · SLA · monitoring] -.-> W1 & R1 & M1
   end
-  ASIS ==>|Contract first, executor later| TOBE`,
-  evidence: 'Active users grew from one team to several divisions · operating scope held through staffing changes',
-  // TODO(kyo): confirm the split
-  myPart:
-    'Built myself: pipeline standards and quality DAGs, the segment data models and async queries, API caching and ETags, the data map and AI harness, the redesign proposal. With the team: screens, new marts and DAGs, day-to-day operations.'
+  ASIS ==>|Contract first, executor later| TOBE`
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, List, ListItem, ListItemIcon, ListItemText, Paper, Typography } from '@mui/material';
+import { Box, Link, List, ListItem, ListItemIcon, ListItemText, Paper, Typography } from '@mui/material';
 import { ReportProblemOutlined } from '@mui/icons-material';
 import SectionShell from '../layout/SectionShell';
 import MermaidDiagram from '../ui/MermaidDiagram';
@@ -12,22 +12,22 @@ const AiWorkflow: React.FC = () => {
   return (
     <SectionShell id="ai" eyebrow={s.ai.eyebrow} title={aiWorkflow.headline} tone="paper">
       <Reveal>
-        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '7fr 5fr' }, gap: { xs: 3, md: 5 }, mb: 6 }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '5fr 7fr' }, gap: { xs: 3, md: 5 }, mb: 6 }}>
           <Box>
-            <Typography variant="overline" color="primary" component="div">
-              {s.ai.changed}
-            </Typography>
-            <Typography variant="subtitle1" sx={{ fontSize: { md: '1.15rem' } }}>
-              {aiWorkflow.changed}
+            <Typography variant="subtitle1" color="text.secondary">
+              {aiWorkflow.intro}
+              {aiWorkflow.caseId && (
+                <Link href={`#case-${aiWorkflow.caseId}`} underline="hover" sx={{ ml: 1, fontWeight: 700, whiteSpace: 'nowrap' }}>
+                  → {s.ai.seeCase} {aiWorkflow.caseId}
+                </Link>
+              )}
             </Typography>
           </Box>
           <Box>
-            <Typography variant="overline" color="text.secondary" component="div">
+            <Typography variant="overline" color="primary" component="div">
               {s.ai.how}
             </Typography>
-            <Typography variant="body1" color="text.secondary">
-              {aiWorkflow.how}
-            </Typography>
+            <Typography variant="body1">{aiWorkflow.how}</Typography>
           </Box>
         </Box>
       </Reveal>

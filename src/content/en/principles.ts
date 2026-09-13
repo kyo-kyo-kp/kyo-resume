@@ -15,12 +15,12 @@ export const principles: Principle[] = [
   {
     title: 'Records govern behavior',
     description: 'Decisions and their reasons are written down separately. Pipelines are the same: anyone should be able to read the contract, understand the state, and recover the same way.',
-    caseId: 'C'
+    caseId: 'E'
   },
   {
     title: 'When opinions differ, agree on criteria and boundaries, not on people',
     description: 'I do not persuade with technical taste. Agree the criteria first, then redraw the ownership boundary.',
-    caseId: 'F'
+    caseId: 'B'
   },
   {
     title: 'Make colleagues better than me',

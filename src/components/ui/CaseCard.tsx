@@ -4,6 +4,7 @@ import { Case } from '../../types/content';
 import { useStrings } from '../../i18n/LocaleContext';
 import Labeled from './Labeled';
 import TagList from './TagList';
+import MermaidDiagram from './MermaidDiagram';
 
 /** 케이스 카드. 제목에 숫자 없음, 숫자는 evidence(각주)에만. */
 const CaseCard: React.FC<{ item: Case }> = ({ item }) => {
@@ -26,6 +27,14 @@ const CaseCard: React.FC<{ item: Case }> = ({ item }) => {
           {item.change}
         </Labeled>
       </Stack>
+      {item.diagram && (
+        <Paper variant="outlined" sx={{ mt: 2.5, p: 1.5, bgcolor: 'background.default' }}>
+          <Typography variant="overline" color="text.secondary" component="div" sx={{ mb: 0.5 }}>
+            {s.stories.diagram}
+          </Typography>
+          <MermaidDiagram code={item.diagram} ariaLabel={`${item.title} · ${s.stories.diagram}`} />
+        </Paper>
+      )}
       {(item.myPart || item.teamPart) && (
         <Box sx={{ mt: 2.5, pt: 2, borderTop: 1, borderColor: 'divider', display: 'grid', gap: 0.75 }}>
           {item.myPart && (

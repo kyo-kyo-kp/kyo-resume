@@ -14,5 +14,5 @@ export const leadership: Leadership = {
    * 형식 — title: 무엇을 바꿨나 / description: 처음 생각 → 팀원의 근거 → 받아들인 이유 → 결과 (합쇼체 3문장).
    */
   teamDecision: undefined,
-  caseId: 'E'
+  caseId: 'D'
 };
