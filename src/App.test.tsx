@@ -13,3 +13,13 @@ test('sections follow the reading order', () => {
   const ids = Array.from(document.querySelectorAll('main section[id]')).map((el) => el.id);
   expect(ids).toEqual(['home', 'journey', 'platform', 'stories', 'stack', 'ai', 'how', 'leadership', 'contact']);
 });
+
+test('renders the two-page print resume with site link and education', () => {
+  render(<App />);
+  const rp = document.querySelector('.print-only.rp');
+  expect(rp).not.toBeNull();
+  expect(rp?.textContent).toContain('한성대학교');
+  expect(rp?.textContent).toContain('kyo-resume.vercel.app');
+  expect(rp?.querySelectorAll('a').length).toBe(0);
+  expect(rp?.querySelectorAll('svg').length).toBe(0);
+});

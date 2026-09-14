@@ -22,6 +22,8 @@ export interface Experience {
   chapter?: 'backend' | 'platform' | 'data';
   /** 날짜가 붙은 연혁. 있으면 achievements 대신 렌더링한다. */
   milestones?: Milestone[];
+  /** PDF 이력서용 2~3줄 요약. 없으면 milestones 를 쓴다. */
+  summaryBullets?: string[];
 }
 
 /** 회사별 상세의 연혁 한 줄. caseId 가 있으면 케이스 카드로 링크한다. */

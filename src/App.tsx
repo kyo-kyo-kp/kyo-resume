@@ -14,6 +14,7 @@ import Journey from './components/sections/Journey';
 import StackSection from './components/sections/Stack';
 import Leadership from './components/sections/Leadership';
 import Contact from './components/sections/Contact';
+import ResumePrint from './components/print/ResumePrint';
 
 /** 섹션 순서 = 채용 팀장의 스캔 순서. 콘텐츠는 src/content, 문구는 src/i18n. */
 const App: React.FC = () => (
@@ -21,7 +22,7 @@ const App: React.FC = () => (
     <ColorModeProvider>
       <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', color: 'text.primary' }}>
         <Header />
-        <Box component="main">
+        <Box component="main" className="screen-only">
           <Hero />
           <Journey />
           <Platform />
@@ -33,6 +34,7 @@ const App: React.FC = () => (
           <Contact />
         </Box>
         <Footer />
+        <ResumePrint />
       </Box>
     </ColorModeProvider>
   </LocaleProvider>

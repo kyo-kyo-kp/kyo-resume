@@ -1,74 +1,120 @@
-/* 인쇄(PDF 저장) 전용 스타일. 화면 테마는 인쇄 시 라이트로 강제 전환된다(ColorModeContext). */
+/* 인쇄(PDF 저장) 전용 스타일. 화면 본문(.screen-only)은 숨기고 2장 사이드바형 이력서(.print-only.rp)만 인쇄한다. */
 @media print {
   @page {
     size: A4;
-    margin: 12mm 12mm 14mm;
+    margin: 12mm 13mm 13mm 13mm;
   }
 
   html, body {
     background: #fff !important;
+    color: #111 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  /* 화면 전용 요소 */
+  .screen-only,
   .pdf-hide-in-print,
-  header,
-  footer {
+  header.MuiAppBar-root,
+  footer.MuiBox-root {
     display: none !important;
   }
 
-  /* 스크롤 진입 애니메이션 해제: 인라인 opacity/transform 을 덮어쓴다 */
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
+  .print-only { display: block !important; }
+
+  .rp {
+    --accent: #0f766e;
+    --accent-2: #14b8a6;
+    --accent-3: #5eead4;
+    --band: #eef6f5;
+    --line: #d9dee3;
+    --muted: #5b6673;
+    --side-w: 56mm;
+    --side-gap: 8mm;
+    font-family: "Pretendard Variable", Pretendard, Inter, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.45;
+    color: #111;
+    position: relative;
+  }
+  .rp p { margin: 0 0 3pt; }
+  .rp ul, .rp ol { margin: 0; padding-left: 12pt; }
+  .rp li { margin: 0 0 1.5pt; }
+  .rp-muted { color: var(--muted); }
+
+  /* ---- 2단 그리드 + 페이지마다 반복되는 사이드 밴드 ---- */
+  .rp-side-layout { display: grid !important; grid-template-columns: var(--side-w) 1fr; column-gap: var(--side-gap); align-items: start; }
+  .rp-side-bg {
+    position: fixed;
+    top: -12mm; bottom: -13mm; left: -13mm;
+    width: calc(var(--side-w) + 13mm + 4mm);
+    background: var(--band);
+    z-index: -1;
   }
 
-  /* 접힌 아코디언(회사별 상세) 펼침 */
-  .MuiCollapse-root {
-    height: auto !important;
-    visibility: visible !important;
-    min-height: 0 !important;
-  }
-  .MuiAccordionSummary-expandIconWrapper {
-    display: none !important;
-  }
+  /* ---- 사이드바 ---- */
+  .rp-side { font-size: 8.1pt; line-height: 1.42; padding-right: 4mm; }
+  .rp-side-block { margin: 0 0 7pt; break-inside: avoid; }
+  .rp-side h3 { font-size: 7.5pt; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 3pt; }
+  .rp-identity { padding: 0 0 7pt; border-bottom: 1.5pt solid var(--accent); margin-bottom: 8pt; }
+  .rp-name { font-size: 21pt; font-weight: 800; letter-spacing: -0.02em; margin: 0; line-height: 1.1; }
+  .rp-name-sub { font-size: 9.5pt; color: var(--muted); margin-top: 1pt; }
+  .rp-title { font-size: 9.5pt; font-weight: 700; color: var(--accent); margin-top: 5pt; line-height: 1.3; }
+  .rp-contact-line { word-break: break-all; }
+  .rp-more { padding: 7pt 8pt 8pt; background: #fff; border: 0.75pt solid var(--accent); border-radius: 4pt; }
+  .rp-more h3 { margin-bottom: 5pt; }
+  .rp-qr-img { display: block; width: 84pt; height: 84pt; margin: 0 auto 6pt; }
+  .rp-more-note { font-weight: 700; line-height: 1.4; margin-bottom: 3pt; }
+  .rp-more-url { word-break: break-all; line-height: 1.4; }
+  .rp-facts { list-style: none; padding-left: 0 !important; }
+  .rp-facts li { padding-left: 9pt; position: relative; margin-bottom: 2pt; }
+  .rp-facts li::before { content: ""; position: absolute; left: 0; top: 5pt; width: 4pt; height: 4pt; border-radius: 1pt; background: var(--accent); }
+  .rp-skill { margin: 0 0 4pt; }
+  .rp-skill-domain { font-weight: 700; }
+  .rp-skill-flag { color: var(--accent); margin-left: 1pt; }
+  .rp-skill-line { word-break: keep-all; }
+  .rp-skill-note { font-size: 7.3pt; color: #777; margin-top: 2pt; }
+  .rp-side-entry { margin: 0 0 4pt; }
 
-  /* 여백·폭 축소 */
-  section {
-    padding-top: 10mm !important;
-    padding-bottom: 8mm !important;
-    border-top: 0 !important;
-  }
-  #home {
-    padding-top: 0 !important;
-  }
-  .MuiContainer-root {
-    max-width: none !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
+  /* ---- 메인 ---- */
+  .rp-main { min-width: 0; }
+  .rp-lead { font-size: 10.5pt; font-weight: 600; line-height: 1.42; margin: 0 0 6pt; letter-spacing: -0.005em; }
 
-  /* 카드·표가 페이지 경계에서 잘리지 않게 */
-  .MuiPaper-root,
-  tr {
-    break-inside: avoid;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    break-after: avoid;
-  }
+  /* 경력 아크: 비율 막대 + 연도 틱 + 범례 */
+  .rp-arc { margin: 0 0 12pt; }
+  .rp-arc-bar { position: relative; display: flex; height: 8pt; border-radius: 4pt; margin: 12pt 0 14pt; }
+  .rp-arc-seg { position: relative; height: 100%; min-width: 0; }
+  .rp-arc-seg-0 { background: var(--accent-3); border-radius: 4pt 0 0 4pt; }
+  .rp-arc-seg-1 { background: var(--accent-2); }
+  .rp-arc-seg-2 { background: var(--accent); border-radius: 0 4pt 4pt 0; }
+  .rp-arc-year { position: absolute; left: 0; top: 9pt; font-size: 7pt; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .rp-arc-marker { position: absolute; top: -4pt; width: 0; }
+  .rp-arc-marker::before { content: ""; position: absolute; left: -1pt; top: 0; width: 2pt; height: 16pt; background: #111; }
+  .rp-arc-marker span { position: absolute; right: 3pt; top: -10pt; font-size: 7pt; font-weight: 800; letter-spacing: 0.06em; white-space: nowrap; color: #111; }
+  .rp-arc-legend { display: flex; flex-wrap: wrap; gap: 3pt 14pt; }
+  .rp-arc-item { display: flex; align-items: baseline; gap: 5pt; }
+  .rp-arc-dot { display: inline-block; width: 7pt; height: 7pt; border-radius: 2pt; transform: translateY(1pt); }
+  .rp-arc-title { font-size: 8.6pt; font-weight: 800; }
+  .rp-arc-period { font-size: 7.5pt; color: var(--muted); font-variant-numeric: tabular-nums; }
 
-  /* 다이어그램은 폭에 맞춤 */
-  svg {
-    max-width: 100% !important;
-    height: auto !important;
-  }
+  /* 섹션 */
+  .rp-section { margin: 0 0 8pt; }
+  .rp-main h2 { font-size: 8.5pt; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 6pt 0 4pt; padding-bottom: 2pt; border-bottom: 0.75pt solid var(--line); break-after: avoid; }
 
-  /* 링크 주소 노출 방지, 버튼은 텍스트만 */
-  a[href]::after {
-    content: none !important;
-  }
-  .MuiButton-root {
-    box-shadow: none !important;
-  }
+  /* 대표 성과 */
+  .rp-headlines { list-style: none; padding-left: 0 !important; display: grid; grid-template-columns: 1fr 1fr; gap: 4pt 10pt; }
+  .rp-headlines li { display: grid; grid-template-columns: 16pt 1fr; column-gap: 4pt; break-inside: avoid; }
+  .rp-num { font-size: 8pt; font-weight: 800; color: var(--accent); letter-spacing: 0.06em; padding-top: 1pt; }
+  .rp-headline-title { font-weight: 800; font-size: 9.8pt; line-height: 1.3; margin-bottom: 1pt; }
+  .rp-headline-detail { font-size: 8.3pt; color: #333; line-height: 1.36; }
+
+  /* 경력 */
+  .rp-item { break-inside: avoid; margin: 0 0 7pt; }
+  .rp-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6pt; margin-bottom: 1pt; }
+  .rp-row strong { font-size: 10.2pt; }
+  .rp-period { margin-left: auto; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 8.8pt; }
+  .rp-list li { margin-bottom: 1pt; font-size: 9.2pt; line-height: 1.42; }
+  .rp-tech { font-size: 8pt; color: #666; margin-top: 1pt; }
+
+
+  a[href]::after { content: none !important; }
 }

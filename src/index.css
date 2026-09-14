@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* 인쇄 전용 이력서 레이아웃은 화면에서 숨긴다 */
+.print-only {
+  display: none;
+}

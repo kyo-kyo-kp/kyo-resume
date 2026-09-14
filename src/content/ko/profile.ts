@@ -17,5 +17,6 @@ export const profile: Profile = {
   links: [
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/%EA%B7%9C%ED%98%B8-%EA%B9%80-669796135/' }
   ],
-  careerStart: '2011-12-01'
+  careerStart: '2011-12-01',
+  siteUrl: 'https://kyo-resume.vercel.app'
 };

@@ -28,6 +28,11 @@ export const experiences: Experience[] = [
       { date: "2026 상반기", text: "사내 시각화 플랫폼을 의사결정 플랫폼으로 재정의. 본사 출장으로 로드맵 검증", caseId: "B" },
       { date: "2026.07", text: "DW 데이터 맵(온톨로지) 구축 시작, 주간 자동 갱신으로 사내 배포", caseId: "E" }
     ],
+    summaryBullets: [
+      "DW 파이프라인이 없던 상태에서 수집(배치·실시간) → 5계층 가공 → API → 시각화까지 설계·구축·운영",
+      "RFM 세그먼트 제품화, AI 분석 보고서 하네스(단독), DW 데이터 맵 구축, Redshift Serverless 도입",
+      "2025.10 팀 실질 리딩 → 2026.01 팀장. 채용·온보딩·운영 체계 정비, 네 영역 크로스 커버 전환 설득"
+    ],
     chapter: "data"
   },
   {
@@ -43,6 +48,10 @@ export const experiences: Experience[] = [
       { date: "2022 – 2024", text: "AWS Personalize 기반 개인화 추천 도입, 데이터 ETL·KPI 지표 고도화" },
       { date: "2024.06", text: "일본 픽코마 데이터 조직으로 이동" }
     ],
+    summaryBullets: [
+      "프랑스 픽코마 백엔드 전반 운영·개발: 어드민, 통계 배치, 정산, 데이터 추출",
+      "AWS Personalize 기반 개인화 추천 도입, 데이터 ETL·KPI 지표 고도화"
+    ],
     chapter: "platform"
   },
   {
@@ -57,6 +66,10 @@ export const experiences: Experience[] = [
       { date: "2018.11 – 2021.09", text: "사원검색 서비스를 닷넷에서 Java로 리빌딩", caseId: "F" },
       { date: "2018.11 – 2021.09", text: "웹오피스 포털을 게시판 엔진에서 Java 모놀리식 구조로 재설계, DB 정규화", caseId: "F" },
       { date: "2021.10", text: "인텔리전스랩스로 이동. 넥슨플레이(Java)·스푼플러스(Python) 앱 백엔드 운영" }
+    ],
+    summaryBullets: [
+      "그룹웨어를 Java 모놀리식 구조로 재설계(웹오피스 포털, 사원검색 닷넷 → Java), 채용 인성검사 시스템 신규 구축",
+      "2021.10부터 넥슨플레이(Java)·스푼플러스(Python) 앱 백엔드 운영"
     ],
     chapter: "backend"
   },
@@ -74,6 +87,10 @@ export const experiences: Experience[] = [
       { date: "2013 – 2018", text: "외부 제휴사 연동 API: 타사 쿠폰 발행과 통합 교환 처리", caseId: "G" },
       { date: "2018", text: "기프티쇼 플랫폼 차세대 고도화 프로젝트 참여" }
     ],
+    summaryBullets: [
+      "기프티쇼 쿠폰 발송 파이프라인(DB 상태 기반 큐, SMS·이메일 자동화)과 실무자용 발송 실패 관리 화면",
+      "Netty 기반 POS 교환·반품 인증, 외부 제휴사 쿠폰 발행·통합 교환 API. IDC 환경에서 플랫폼 전반 5년"
+    ],
     chapter: "backend"
   },
   {
@@ -88,6 +105,7 @@ export const experiences: Experience[] = [
       { date: "2012", text: "SKT TEMS 제주 전기차 충전소 시스템 고도화 (3~4차년도)" },
       { date: "2012", text: "NOC SOAP 서버 애플리케이션 개발과 통신 연동" }
     ],
+    summaryBullets: ["SKT TEMS 제주 전기차 충전소 시스템 고도화, 사내 인력관리 시스템 운영, NOC SOAP 서버 개발"],
     chapter: "backend"
   }
 ];

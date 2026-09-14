@@ -25,6 +25,18 @@ export interface Profile {
   links: Link[];
   /** careerCalculator 입력. */
   careerStart: string;
+  /** 공개 사이트 URL. PDF 헤더와 마지막 줄에 노출. */
+  siteUrl?: string;
+}
+
+/** PDF(제출용 2장 사이드바형) 전용 콘텐츠. 사실 위주, 서사 없음. */
+export interface ResumeSummary {
+  /** 사이드바 사실 목록. 경력 총합은 컴포넌트가 계산해 앞에 붙인다. */
+  keyFacts: string[];
+  /** 메인 상단 "대표 성과" 4개. 굵은 제목 + 한 줄 부연. */
+  headlines: { title: string; detail: string }[];
+  /** 마지막 줄: 상세는 사이트에서. */
+  detailNote: string;
 }
 
 export interface Criterion {
@@ -150,4 +162,5 @@ export interface SiteContent {
   chapters: Chapter[];
   stack: SkillGroup[];
   leadership: Leadership;
+  resume: ResumeSummary;
 }

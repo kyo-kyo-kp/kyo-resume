@@ -17,6 +17,7 @@ export interface UiStrings {
   toggles: { theme: string; locale: string };
   pdf: { label: string; busy: string };
   common: { enlarge: string; close: string; zoomIn: string; zoomOut: string; resetZoom: string };
+  print: { summary: string; experience: string; highlights: string; platform: string; criteria: string; scope: string; collaboration: string; skills: string; operates: string; uses: string; ai: string; guardrails: string; limitations: string; principles: string; leadership: string; education: string; certifications: string; problem: string; approach: string; change: string; myPart: string; teamPart: string; tech: string; generated: string; strengths: string; site: string; contact: string; headlines: string; career: string; lead: string; more: string; scan: string };
 }
 
 const ko: UiStrings = {
@@ -33,7 +34,8 @@ const ko: UiStrings = {
   footer: { builtWith: 'React · TypeScript · MUI 로 직접 만들었습니다.' },
   toggles: { theme: '테마 전환', locale: '언어 전환' },
   pdf: { label: 'PDF로 저장', busy: '인쇄 준비 중...' },
-  common: { enlarge: '클릭해서 크게 보기', close: '닫기', zoomIn: '확대', zoomOut: '축소', resetZoom: '원래 크기' }
+  common: { enlarge: '클릭해서 크게 보기', close: '닫기', zoomIn: '확대', zoomOut: '축소', resetZoom: '원래 크기' },
+  print: { summary: '요약', experience: '경력', highlights: '대표 성과', platform: '데이터 플랫폼', criteria: '재설계 판단 기준', scope: '범위 판단', collaboration: '합의 과정', skills: '기술', operates: '설계·운영', uses: '사용', ai: 'AI를 일에 넣는 방식', guardrails: '가드레일', limitations: '한계', principles: '일하는 방식', leadership: '리더십', education: '학력', certifications: '자격', problem: '문제', approach: '접근', change: '바뀐 것', myPart: '직접 구현', teamPart: '팀과 함께', tech: '기술', generated: '이 문서는 kyo-resume 사이트에서 생성되었습니다', strengths: '핵심 역량', site: '사이트', contact: '연락', headlines: '대표 성과', career: '경력 흐름', lead: '팀장', more: '더 자세한 이야기', scan: 'QR을 스캔하거나' }
 };
 
 const en: UiStrings = {
@@ -50,7 +52,8 @@ const en: UiStrings = {
   footer: { builtWith: 'Hand-built with React · TypeScript · MUI.' },
   toggles: { theme: 'Toggle theme', locale: 'Switch language' },
   pdf: { label: 'Save as PDF', busy: 'Preparing...' },
-  common: { enlarge: 'Click to enlarge', close: 'Close', zoomIn: 'Zoom in', zoomOut: 'Zoom out', resetZoom: 'Reset zoom' }
+  common: { enlarge: 'Click to enlarge', close: 'Close', zoomIn: 'Zoom in', zoomOut: 'Zoom out', resetZoom: 'Reset zoom' },
+  print: { summary: 'Summary', experience: 'Experience', highlights: 'Selected work', platform: 'Data platform', criteria: 'Redesign criteria', scope: 'Scope decision', collaboration: 'How agreement was reached', skills: 'Skills', operates: 'Design & operate', uses: 'Use', ai: 'How I bring AI into the work', guardrails: 'Guardrails', limitations: 'Limitations', principles: 'How I work', leadership: 'Leadership', education: 'Education', certifications: 'Certifications', problem: 'Problem', approach: 'Approach', change: 'What changed', myPart: 'Built myself', teamPart: 'With the team', tech: 'Stack', generated: 'Generated from the kyo-resume site', strengths: 'Core strengths', site: 'Site', contact: 'Contact', headlines: 'Selected achievements', career: 'Career arc', lead: 'Lead', more: 'The full story', scan: 'Scan the QR or visit' }
 };
 
 export const strings: Record<Locale, UiStrings> = { ko, en };

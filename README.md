@@ -8,12 +8,13 @@ React 19 + TypeScript 5 + MUI 7 로 만든 단일 페이지이며, 콘텐츠(한
 ```
 src/
   content/            콘텐츠. ko/ 가 원본, en/ 은 번역. 같은 SiteContent 타입을 공유
-    ko/  en/          profile · platform · cases(A~G) · principles · aiWorkflow · journey · stack · leadership
+    ko/  en/          profile · platform · cases(A~G) · principles · aiWorkflow · journey · stack · leadership · resume(PDF 사이드바형 요약)
     index.ts          getContent(locale)
   i18n/               LocaleContext(로케일 상태·훅), strings(섹션 제목·라벨 같은 UI 문구)
   theme/              MUI 테마(라이트 기본, 다크 토글, 악센트 1색), ColorModeContext
   components/
     layout/           Header(내비·KO/EN·테마·PDF), SectionShell, Footer
+    print/            ResumePrint — 인쇄(PDF) 전용 이력서 레이아웃
     sections/         Hero → Platform → Stories → HowIWork → AiWorkflow → Journey → Stack → Leadership → Contact
     ui/               CaseCard, MermaidDiagram, Labeled, TagList, Reveal
   data/resumeData.ts  회사별 상세(경력·학력·자격). Journey 아코디언이 사용
@@ -46,7 +47,12 @@ npx tsc --noEmit   # 타입 체크
 
 ## PDF
 
-헤더의 "PDF로 저장"은 브라우저 인쇄 대화상자를 연다(대상: PDF로 저장). 인쇄 직전에 테마가 라이트로 강제 전환되고, 접힌 회사별 상세가 펼쳐지며, 스크롤 애니메이션이 해제된다(`src/App.css` 의 `@media print`). 파일명은 `Kyuho-Kim-Kyo-Resume` 로 제안된다.
+헤더의 "PDF로 저장"은 브라우저 인쇄 대화상자를 연다(대상: PDF로 저장). 인쇄 시에는 화면 본문(`.screen-only`)을 숨기고 **A4 한 장 사이드바형 이력서**(`src/components/print/ResumePrint.tsx`, `.print-only`)만 출력한다.
+
+- 왼쪽 밴드: 이름·직함, 연락, "더 자세한 이야기" QR(사이트 `kyo-resume.vercel.app`, `public/qr-site.svg`), 사실 목록, 기술
+- 오른쪽: 한 줄 가치 → 경력 아크(3막 비율 막대) → 대표 성과 4 → 경력(역할당 2~3줄, `Experience.summaryBullets`) → 학력
+- 웹은 깊이(케이스·다이어그램·원칙), PDF는 훑기. 링크·다이어그램·버튼은 PDF에 넣지 않는다
+- PDF 전용 문구는 `src/content/{ko,en}/resume.ts`, 스타일은 `src/App.css` 의 `@media print`. 배경색 인쇄가 켜져 있어야 밴드가 나온다. 파일명은 `Kyuho-Kim-Kyo-Resume`
 
 ## 배포
 
